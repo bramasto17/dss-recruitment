@@ -64,10 +64,10 @@
                                             </thead>
 
                                             <tbody>
-                                            @foreach($results as $department)
+                                            @foreach($results as $result)
                                                 <tr>
-                                                    <td class="text-center">{{$department['id']}}</td>
-                                                    <td class="text-center">{{$department['name']}}</td>
+                                                    <td class="text-center">{{$result['id']}}</td>
+                                                    <td class="text-center">{{$result['name']}}</td>
                                                     <td class="text-center">
                                                         <div class="btn-group text-right">
                                                             <button type="button"

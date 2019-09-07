@@ -14,6 +14,6 @@ class Positions extends Model
 	
     public function department()
     {
-        return $this->belongTo('App\Models\Departments', 'id', 'departnent_id');
+        return $this->belongsTo('App\Models\Departments', 'department_id', 'id');
     }
 }

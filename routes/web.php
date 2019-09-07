@@ -338,4 +338,25 @@ Route::group(['middleware' => ['auth']], function ()
 
     //Route::get('assign-project', 'ProjectController@assignProject')->name('assign-project');
 
+
+    //Routes for departments
+    Route::group(['prefix' => 'departments'], function($router) {
+        Route::get('/', 'DepartmentsController@getAll')->name('list-departments');
+        Route::get('add', 'DepartmentsController@add')->name('add-departments');
+        Route::post('add', 'DepartmentsController@create');
+        Route::get('edit/{id}', 'DepartmentsController@edit')->name('edit-departments');
+        Route::post('edit/{id}', 'DepartmentsController@update');
+        Route::get('delete/{id}', 'DepartmentsController@delete')->name('delete-departments');
+    });
+
+    Route::group(['prefix' => 'positions'], function($router) {
+        Route::get('/', 'PositionsController@getAll')->name('list-positions');
+        Route::get('add', 'PositionsController@add')->name('add-positions');
+        Route::post('add', 'PositionsController@create');
+        Route::get('edit/{id}', 'PositionsController@edit')->name('edit-positions');
+        Route::post('edit/{id}', 'PositionsController@update');
+        Route::get('delete/{id}', 'PositionsController@delete')->name('delete-positions');
+    });
+
+
 });

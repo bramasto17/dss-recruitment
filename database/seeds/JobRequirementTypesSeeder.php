@@ -13,14 +13,14 @@ class JobRequirementTypesSeeder extends Seeder
     {
         Schema::disableForeignKeyConstraints();
         \DB::table('job_requirement_types')->truncate();
-        \DB::table('job_requirement_types')->insert(
+        \DB::table('job_requirement_types')->insert([
             [
                 'name' => 'Boolean',
             ],
             [
                 'name' => 'Range',
             ]
-        );
+        ]);
         Schema::enableForeignKeyConstraints();
     }
 }

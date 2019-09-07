@@ -11,7 +11,9 @@ class JobTypesSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('job_types')->insert(
+        Schema::disableForeignKeyConstraints();
+        \DB::table('job_types')->truncate();
+        \DB::table('job_types')->insert([
             [
                 'name' => 'Permanent',
             ],
@@ -24,6 +26,7 @@ class JobTypesSeeder extends Seeder
             [
                 'name' => 'Internship',
             ]
-        );
+        ]);
+        Schema::enableForeignKeyConstraints();
     }
 }

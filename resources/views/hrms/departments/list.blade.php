@@ -77,10 +77,10 @@
                                                             </button>
                                                             <ul class="dropdown-menu" role="menu">
                                                                 <li>
-                                                                    <a href="/departments/edit/{{$department['id']}}">Edit</a>
+                                                                    <a href="/departments/edit/{{$result['id']}}">Edit</a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="/departments/delete/{{$department['id']}}">Delete</a>
+                                                                    <a href="/departments/delete/{{$result['id']}}">Delete</a>
                                                                 </li>
                                                             </ul>
                                                         </div>

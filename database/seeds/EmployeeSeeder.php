@@ -11,6 +11,8 @@ class EmployeeSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
+        \DB::table('employees')->truncate();
         \DB::table('employees')->insert([
             'photo' => '',
             'code' => 'HR0001',
@@ -43,5 +45,6 @@ class EmployeeSeeder extends Seeder
             'full_final' => '',
             'user_id' => '1'
         ]);
+        Schema::enableForeignKeyConstraints();
     }
 }

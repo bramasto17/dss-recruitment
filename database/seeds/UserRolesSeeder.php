@@ -11,6 +11,8 @@ class UserRolesSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
+        \DB::table('user_roles')->truncate();
         \DB::table('user_roles')->insert([
             [
                 'role_id' => 1,
@@ -19,5 +21,6 @@ class UserRolesSeeder extends Seeder
                 'updated_at' => \Carbon\Carbon::now(),
             ],
         ]);
+        Schema::enableForeignKeyConstraints();
     }
 }

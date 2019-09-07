@@ -11,10 +11,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
+        \DB::table('users')->truncate();
         \DB::table('users')->insert([
             'name' => 'HR Manager',
             'email' => 'test@demo.com',
             'password' => bcrypt('123456'),
         ]);
+        Schema::enableForeignKeyConstraints();
     }
 }

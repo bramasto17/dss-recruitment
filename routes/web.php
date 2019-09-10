@@ -358,5 +358,14 @@ Route::group(['middleware' => ['auth']], function ()
         Route::get('delete/{id}', 'PositionsController@delete')->name('delete-positions');
     });
 
+    Route::group(['prefix' => 'jobs'], function($router) {
+        Route::get('/', 'JobsController@getAll')->name('list-jobs');
+        Route::get('add', 'JobsController@add')->name('add-jobs');
+        Route::post('add', 'JobsController@create');
+        Route::get('edit/{id}', 'JobsController@edit')->name('edit-jobs');
+        Route::post('edit/{id}', 'JobsController@update');
+        Route::get('delete/{id}', 'JobsController@delete')->name('delete-jobs');
+    });
+
 
 });

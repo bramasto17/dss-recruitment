@@ -21,4 +21,9 @@ class Jobs extends Model
     {
         return $this->belongsTo('App\Models\JobTypes', 'job_type_id', 'id');
     }
+
+    public function requirements()
+    {
+        return $this->hasMany('App\Models\JobRequirements', 'job_id', 'id');
+    }
 }

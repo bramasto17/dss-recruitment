@@ -14,11 +14,11 @@ class Jobs extends Model
 	
     public function position()
     {
-        return $this->belongTo('App\Models\Positions', 'id', 'position_id');
+        return $this->belongsTo('App\Models\Positions', 'position_id', 'id');
     }
 
     public function type()
     {
-        return $this->belongTo('App\Models\JobTypes', 'id', 'job_type_id');
+        return $this->belongsTo('App\Models\JobTypes', 'job_type_id', 'id');
     }
 }

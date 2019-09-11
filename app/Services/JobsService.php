@@ -49,7 +49,20 @@ class JobsService extends \App\Services\BaseService
     public function update(array $data, $id)
     {
     	return $this->atomic(function() use ($data, $id) {
-	        Jobs::where('id', $id)->update($data);
+            $job = $this->buildJobData($data);
+	        Jobs::where('id', $id)->update($job);
+
+            $data['job_id'] = $id;
+
+            $jobRequirements = $this->buildJobRequirementsData($data);
+            foreach ($jobRequirements as $value) {
+                if($value['id'] == null){
+                    $jobRequirement = JobRequirements::create($value)->toArray();
+                }
+                else{
+                    JobRequirements::where('id', $value['id'])->update($value);
+                }
+            }
 
 	        $result = Jobs::where('id', $id)->firstOrFail()->toArray();
 
@@ -89,17 +102,21 @@ class JobsService extends \App\Services\BaseService
     }
 
     public function buildJobRequirementsData($data){
-        // dd($data);
         $return = [];
 
         foreach ($data['requirement'] as $key => $value) {
-            // dd($key);
-            $return[] = [
+            $obj = [
                 'job_id' => $data['job_id'],
                 'job_requirement_type_id' => $data['job_requirement_type_id'][$key],
                 'name' => $data['requirement'][$key],
                 'priority' => $data['priority'][$key],
             ];
+
+            if(@$data['requirement_id']) {
+                $obj['id'] = $data['requirement_id'][$key];
+            }
+
+            $return[] = $obj;
         }
         return $return;
     }

@@ -82,6 +82,8 @@
                                             <div id="requirements">
                                                 @foreach($result['requirements'] as $key => $requirement)
                                                     <div class="form-group">
+                                                        <input type="hidden" name="requirement_id[{{$i}}]" id="requirement_id" class="select2-single form-control" value="{{(@$requirement['id'] ? $requirement['id'] : null)}}">
+
                                                         <label class="col-md-3 control-label"> Requirement </label>
                                                         <div class="col-md-2">
                                                             <input type="text" name="requirement[{{$i}}]" id="requirement" class="select2-single form-control" placeholder="Name" value="{{$requirement['name']}}" required>
@@ -119,6 +121,7 @@
                                                             </div>
                                                         @endif
                                                     </div>
+                                                    <?php $i++; ?>
                                                 @endforeach
                                             </div>
 

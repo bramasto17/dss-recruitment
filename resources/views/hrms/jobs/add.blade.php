@@ -100,6 +100,31 @@
                                                         </span></a>
                                                     </div>
                                                 </div>
+                                                
+                                                <?php $i += 1; ?>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label"> </label>
+                                                    <div class="col-md-2">
+                                                        <input type="text" name="requirement[{{$i}}]" id="requirement" class="select2-single form-control" placeholder="Name" required>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <select class="select2-multiple form-control select-primary"
+                                                                name="job_requirement_type_id[{{$i}}]" required>
+                                                            <option value="" selected>Select One</option>
+                                                            @foreach($job_requirement_types as $job_requirement_type)
+                                                                <option value="{{$job_requirement_type['id']}}">{{$job_requirement_type['name']}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="hidden" class="" name="priority[{{$i}}]" value="0">
+                                                                <input type="checkbox" class="" name="priority[{{$i}}]" value="1">Priority
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="form-group">

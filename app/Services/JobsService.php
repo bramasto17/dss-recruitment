@@ -56,7 +56,7 @@ class JobsService extends \App\Services\BaseService
 
             $jobRequirements = $this->buildJobRequirementsData($data);
             foreach ($jobRequirements as $value) {
-                if($value['id'] == null){
+                if(@$value['id'] == null){
                     $jobRequirement = JobRequirements::create($value)->toArray();
                 }
                 else{
@@ -112,7 +112,7 @@ class JobsService extends \App\Services\BaseService
                 'priority' => $data['priority'][$key],
             ];
 
-            if(@$data['requirement_id']) {
+            if(@$data['requirement_id'][$key]) {
                 $obj['id'] = $data['requirement_id'][$key];
             }
 

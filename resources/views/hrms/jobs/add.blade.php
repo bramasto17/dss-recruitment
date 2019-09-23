@@ -17,7 +17,7 @@
                         <a href="/dashboard"> Dashboard </a>
                     </li>
                     <li class="breadcrumb-link">
-                        <a href="jobs"> Jobs </a>
+                        <a href="/jobs"> Jobs </a>
                     </li>
                     <li class="breadcrumb-current-item"> Add Jobs</li>
                 </ol>
@@ -100,7 +100,7 @@
                                                         </span></a>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <?php $i += 1; ?>
                                                 <div class="form-group">
                                                     <label class="col-md-3 control-label"> </label>

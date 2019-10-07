@@ -15,8 +15,8 @@ class CreateApplicantExpectationsTable extends Migration
     {
         Schema::create('applicant_expectations', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('application_id')->nullable();
-            $table->foreign('application_id')->references('id')->on('applications');
+            $table->unsignedInteger('applicant_id')->nullable();
+            $table->foreign('applicant_id')->references('id')->on('applicants');
             $table->unsignedInteger('expectation_id')->nullable();
             $table->foreign('expectation_id')->references('id')->on('expectations');
             $table->integer('grade');

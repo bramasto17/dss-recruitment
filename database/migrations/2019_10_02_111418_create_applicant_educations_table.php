@@ -15,8 +15,8 @@ class CreateApplicantEducationsTable extends Migration
     {
         Schema::create('applicant_educations', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('application_id')->nullable();
-            $table->foreign('application_id')->references('id')->on('applications');
+            $table->unsignedInteger('applicant_id')->nullable();
+            $table->foreign('applicant_id')->references('id')->on('applicants');
             $table->string('stage');
             $table->string('name');
             $table->integer('grade');

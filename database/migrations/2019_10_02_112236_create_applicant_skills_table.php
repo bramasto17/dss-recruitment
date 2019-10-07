@@ -15,8 +15,8 @@ class CreateApplicantSkillsTable extends Migration
     {
         Schema::create('applicant_skills', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('application_id')->nullable();
-            $table->foreign('application_id')->references('id')->on('applications');
+            $table->unsignedInteger('applicant_id')->nullable();
+            $table->foreign('applicant_id')->references('id')->on('applicants');
             $table->unsignedInteger('skill_type_id')->nullable();
             $table->foreign('skill_type_id')->references('id')->on('skill_types');
             $table->string('name');

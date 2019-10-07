@@ -12,8 +12,28 @@ class Applicants extends Model
 	protected $guarded    = array('id');
 	protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
 
-	public function application()
+	public function applications()
     {
-        return $this->hasOne('App\Models\Applications', 'id', 'applicant_id');
+        return $this->hasMany('App\Models\Applications', 'id', 'applicant_id');
+    }
+
+    public function careers()
+    {
+        return $this->hasMany('App\Models\ApplicantCareers', 'id', 'applicant_id');
+    }
+
+    public function educations()
+    {
+        return $this->hasMany('App\Models\ApplicantEducations', 'id', 'applicant_id');
+    }
+
+    public function expectations()
+    {
+        return $this->hasMany('App\Models\ApplicantExpectations', 'id', 'applicant_id');
+    }
+
+    public function skills()
+    {
+        return $this->hasMany('App\Models\ApplicantSkills', 'id', 'applicant_id');
     }
 }

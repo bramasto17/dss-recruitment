@@ -26,6 +26,78 @@
     </li>
     @if(Auth::user()->isHR())
         <li>
+            <a class="accordion-toggle" href="/departments">
+                <span class="fa fa-user"></span>
+                <span class="sidebar-title">Departments</span>
+                <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+                <li>
+                    <a href="{{route('add-departments')}}">
+                        <span class="glyphicon glyphicon-tags"></span> Add Departments </a>
+                </li>
+                <li>
+                    <a href="{{route('list-departments')}}">
+                        <span class="glyphicon glyphicon-tags"></span> Departments Listing </a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a class="accordion-toggle" href="/positions">
+                <span class="fa fa-user"></span>
+                <span class="sidebar-title">Positions</span>
+                <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+                <li>
+                    <a href="{{route('add-positions')}}">
+                        <span class="glyphicon glyphicon-tags"></span> Add Positions </a>
+                </li>
+                <li>
+                    <a href="{{route('list-positions')}}">
+                        <span class="glyphicon glyphicon-tags"></span> Positions Listing </a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a class="accordion-toggle" href="/jobs">
+                <span class="fa fa-user"></span>
+                <span class="sidebar-title">Jobs</span>
+                <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+                <li>
+                    <a href="{{route('add-jobs')}}">
+                        <span class="glyphicon glyphicon-tags"></span> Add Jobs </a>
+                </li>
+                <li>
+                    <a href="{{route('list-jobs')}}">
+                        <span class="glyphicon glyphicon-tags"></span> Jobs Listing </a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a class="accordion-toggle" href="/applicants">
+                <span class="fa fa-user"></span>
+                <span class="sidebar-title">Applicants</span>
+                <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+                <li>
+                    <a href="{{route('add-applicants')}}">
+                        <span class="glyphicon glyphicon-tags"></span> Add Applicants </a>
+                </li>
+                <li>
+                    <a href="{{route('list-applicants')}}">
+                        <span class="glyphicon glyphicon-tags"></span> Applicants Listing </a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
             <a class="accordion-toggle" href="/dashboard">
                 <span class="fa fa-user"></span>
                 <span class="sidebar-title">Employees</span>

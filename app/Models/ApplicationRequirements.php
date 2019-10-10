@@ -8,17 +8,22 @@ class ApplicationRequirements extends Model
 {
     use SoftDeletes;
 
-    protected $table      = 'application_details';
+    protected $table      = 'application_requirements';
 	protected $guarded    = array('id');
 	protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
+    protected $appends    = ['grade'];
 
 	public function application()
     {
-        return $this->belongTo('App\Models\Applications', 'id', 'application_id');
+        return $this->belongsTo('App\Models\Applications', 'application_id', 'id');
     }
 
     public function requirement()
     {
-        return $this->belongTo('App\Models\JobRequirements', 'id', 'job_requirement_id');
+        return $this->belongsTo('App\Models\JobRequirements', 'job_requirement_id', 'id');
+    }
+
+    public function getGradeAttribute(){
+        return $this->requirement->name;
     }
 }

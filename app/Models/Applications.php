@@ -16,4 +16,9 @@ class Applications extends Model
     {
         return $this->belongTo('App\Models\Applicants', 'id', 'applicant_id');
     }
+
+    public function requirements()
+    {
+        return $this->hasMany('App\Models\ApplicationRequirements', 'application_id', 'id');
+    }
 }

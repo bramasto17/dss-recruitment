@@ -14,26 +14,26 @@ class Applicants extends Model
 
 	public function applications()
     {
-        return $this->hasMany('App\Models\Applications', 'id', 'applicant_id');
+        return $this->hasMany('App\Models\Applications', 'applicant_id', 'id');
     }
 
     public function careers()
     {
-        return $this->hasMany('App\Models\ApplicantCareers', 'id', 'applicant_id');
+        return $this->hasMany('App\Models\ApplicantCareers', 'applicant_id', 'id');
     }
 
     public function educations()
     {
-        return $this->hasMany('App\Models\ApplicantEducations', 'id', 'applicant_id');
+        return $this->hasMany('App\Models\ApplicantEducations', 'applicant_id', 'id');
     }
 
     public function expectations()
     {
-        return $this->hasMany('App\Models\ApplicantExpectations', 'id', 'applicant_id');
+        return $this->hasMany('App\Models\ApplicantExpectations', 'applicant_id', 'id');
     }
 
     public function skills()
     {
-        return $this->hasMany('App\Models\ApplicantSkills', 'id', 'applicant_id');
+        return $this->hasMany('App\Models\ApplicantSkills', 'applicant_id', 'id');
     }
 }

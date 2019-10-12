@@ -39,7 +39,7 @@ class JobsService extends \App\Services\BaseService
 
             $jobRequirements = $this->buildJobRequirementsData($data);
             foreach ($jobRequirements as $value) {
-                $jobRequirement = JobRequirements::create($value)->toArray();
+                if($value['name'] != '')  $jobRequirement = JobRequirements::create($value)->toArray();
             }
 
 	        return $job;
@@ -57,10 +57,10 @@ class JobsService extends \App\Services\BaseService
             $jobRequirements = $this->buildJobRequirementsData($data);
             foreach ($jobRequirements as $value) {
                 if(@$value['id'] == null){
-                    $jobRequirement = JobRequirements::create($value)->toArray();
+                    if($value['name'] != '')  $jobRequirement = JobRequirements::create($value)->toArray();
                 }
                 else{
-                    JobRequirements::where('id', $value['id'])->update($value);
+                    if($value['name'] != '') JobRequirements::where('id', $value['id'])->update($value);
                 }
             }
 

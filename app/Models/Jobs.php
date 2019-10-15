@@ -10,7 +10,8 @@ class Jobs extends Model
 
     protected $table      = 'jobs';
 	protected $guarded    = array('id');
-	protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
+	protected $appends    = ['applications_count'];
 	
     public function position()
     {
@@ -25,5 +26,15 @@ class Jobs extends Model
     public function requirements()
     {
         return $this->hasMany('App\Models\JobRequirements', 'job_id', 'id');
+    }
+
+    public function applications()
+    {
+        return $this->hasMany('App\Models\Applications', 'job_id', 'id');
+    }
+
+    public function getApplicationsCountAttribute()
+    {
+        return $this->applications->count();
     }
 }

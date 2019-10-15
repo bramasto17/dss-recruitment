@@ -11,7 +11,6 @@ class ApplicationRequirements extends Model
     protected $table      = 'application_requirements';
 	protected $guarded    = array('id');
 	protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
-    protected $appends    = ['grade'];
 
 	public function application()
     {
@@ -21,9 +20,5 @@ class ApplicationRequirements extends Model
     public function requirement()
     {
         return $this->belongsTo('App\Models\JobRequirements', 'job_requirement_id', 'id');
-    }
-
-    public function getGradeAttribute(){
-        return $this->requirement->name;
     }
 }

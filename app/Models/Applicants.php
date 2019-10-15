@@ -11,6 +11,7 @@ class Applicants extends Model
     protected $table      = 'applicants';
 	protected $guarded    = array('id');
 	protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
+    protected $appends    = ['education_score', 'career_score', 'skill_score', 'expectation_score'];
 
 	public function applications()
     {
@@ -35,5 +36,25 @@ class Applicants extends Model
     public function skills()
     {
         return $this->hasMany('App\Models\ApplicantSkills', 'applicant_id', 'id');
+    }
+
+    public function getEducationScoreAttribute()
+    {
+        return $this->educations->sum('grade');
+    }
+
+    public function getCareerScoreAttribute()
+    {
+        return $this->careers->sum('grade');
+    }
+
+    public function getSkillScoreAttribute()
+    {
+        return $this->skills->sum('grade');
+    }
+
+    public function getExpectationScoreAttribute()
+    {
+        return $this->expectations->sum('grade');
     }
 }

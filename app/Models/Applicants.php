@@ -50,7 +50,11 @@ class Applicants extends Model
 
     public function getSkillScoreAttribute()
     {
-        return $this->skills->sum('grade');
+        $language = $this->skills->where('skill_type_id',1)->sum('grade');
+        $soft = $this->skills->where('skill_type_id',2)->sum('grade');
+        $hard = $this->skills->where('skill_type_id',3)->sum('grade');
+
+        return ($language * 1) + ($soft * 1.5) + ($hard * 2);
     }
 
     public function getExpectationScoreAttribute()

@@ -42,8 +42,8 @@ class ApplicantsService extends \App\Services\BaseService
     	return $this->atomic(function() use ($data) {
             $data = [
                 'applicant' => [
-                    'id' => 119,
-                    'name' => 'Bramasto Wibisono Tes',
+                    // 'id' => 119,
+                    'name' => 'Bramasto Wibisono',
                     'birthday' => '1997-07-20',
                     'address' => 'BSD',
                     'marital_status' => 0,
@@ -57,16 +57,16 @@ class ApplicantsService extends \App\Services\BaseService
                 ],
                 'careers' => [
                     [
-                        'id' => 237,
-                        'position' => 'Associate Member Web Developer Tes',
+                        // 'id' => 237,
+                        'position' => 'Associate Member Web Developer',
                         'company_name' => 'IT Division Binus School International',
                         'career_start' => '2017-03-01',
                         'career_end' => '2017-12-31',
                         'grade' => 4,
                     ],
                     [
-                        'id' => 238,
-                        'position' => 'Software Engineer Intern Tes',
+                        // 'id' => 238,
+                        'position' => 'Software Engineer Intern',
                         'company_name' => 'Bridestory (PT. Cerita Bahagia)',
                         'career_start' => '2018-08-13',
                         'career_end' => '2019-02-28',
@@ -75,97 +75,97 @@ class ApplicantsService extends \App\Services\BaseService
                 ],
                 'educations' => [
                     [
-                        'id' => 237,
+                        // 'id' => 237,
                         'stage' => 'SMA',
-                        'name' => 'SMA Islam Al Azhar BSD Tes',
+                        'name' => 'SMA Islam Al Azhar BSD',
                         'grade' => 4,
                     ],
                     [
-                        'id' => 238,
+                        // 'id' => 238,
                         'stage' => 'S1',
-                        'name' => 'Binus University Tes',
+                        'name' => 'Binus University',
                         'grade' => 5,
                     ],
                 ],
                 'skills' => [
                     [
-                        'id' => 945,
+                        // 'id' => 945,
                         'skill_type_id' => 1,
-                        'name' => 'Bahasa Indonesia Tes',
+                        'name' => 'Bahasa Indonesia',
                         'grade' => 5,
                     ],
                     [
-                        'id' => 946,
+                        // 'id' => 946,
                         'skill_type_id' => 1,
-                        'name' => 'English Tes',
+                        'name' => 'English',
                         'grade' => 5,
                     ],
                     [
-                        'id' => 947,
+                        // 'id' => 947,
                         'skill_type_id' => 2,
-                        'name' => 'Cepat Belajar Tes',
+                        'name' => 'Cepat Belajar',
                         'grade' => 5,
                     ],
                     [
-                        'id' => 948,
+                        // 'id' => 948,
                         'skill_type_id' => 2,
-                        'name' => 'Komunikasi Tes',
+                        'name' => 'Komunikasi',
                         'grade' => 3,
                     ],
                     [
-                        'id' => 949,
+                        // 'id' => 949,
                         'skill_type_id' => 2,
-                        'name' => 'Adaptasi Tes',
+                        'name' => 'Adaptasi',
                         'grade' => 2,
                     ],
                     [
-                        'id' => 950,
+                        // 'id' => 950,
                         'skill_type_id' => 3,
-                        'name' => 'PHP Tes',
+                        'name' => 'PHP',
                         'grade' => 5,
                     ],
                     [
-                        'id' => 951,
+                        // 'id' => 951,
                         'skill_type_id' => 3,
-                        'name' => 'MySQL Tes',
+                        'name' => 'MySQL',
                         'grade' => 4,
                     ],
                     [
-                        'id' => 952,
+                        // 'id' => 952,
                         'skill_type_id' => 3,
-                        'name' => 'HTML/JavaScript/CSS Tes',
+                        'name' => 'HTML/JavaScript/CSS',
                         'grade' => 4,
                     ],
                 ],
                 'expectations' => [
                     [
-                        'id' => 355,
+                        // 'id' => 355,
                         'expectation_id' => 1,
                         'grade' => 1,
                     ],
                     [
-                        'id' => 356,
+                        // 'id' => 356,
                         'expectation_id' => 2,
                         'grade' => 2,
                     ],
                     [
-                        'id' => 357,
+                        // 'id' => 357,
                         'expectation_id' => 3,
                         'grade' => 3,
                     ],
                 ],
                 'applications' => [
                     [
-                        'id' => 119,
+                        // 'id' => 119,
                         'job_id' => 1,
                         'requirements' => [
                             [
-                                'id' => 121,
+                                // 'id' => 121,
                                 'job_requirement_id' => 1,
                                 'grade' => 0
                             ],
                             [
-                                'id' => 122,
+                                // 'id' => 122,
                                 'job_requirement_id' => 2,
                                 'grade' => 3
                             ],
@@ -173,6 +173,133 @@ class ApplicantsService extends \App\Services\BaseService
                     ]
                 ],
             ];
+
+            // $data = [
+            //     'applicant' => [
+            //         'id' => 119,
+            //         'name' => 'Tomas Sinca',
+            //         'birthday' => '1992-07-20',
+            //         'address' => 'Tangerang Selatan',
+            //         'marital_status' => 0,
+            //         'phone' => '+6285718781231',
+            //         'email' => 'tomas@sinca.com',
+            //         'id_card_no' => '3213213213213',
+            //         'id_card_address' => 'Tangerang Selatan',
+            //         'npwp_no' => '3213213213213',
+            //         'gender' => 'Male',
+            //         'religion' => 'Christian',
+            //     ],
+            //     'careers' => [
+            //         [
+            //             'id' => 237,
+            //             'position' => 'Front End Intern',
+            //             'company_name' => 'Tokopedia',
+            //             'career_start' => '2017-03-01',
+            //             'career_end' => '2017-12-31',
+            //             'grade' => 5,
+            //         ]
+            //     ],
+            //     'educations' => [
+            //         [
+            //             'id' => 237,
+            //             'stage' => 'SMA',
+            //             'name' => 'SMA BPK Penabur',
+            //             'grade' => 3,
+            //         ],
+            //         [
+            //             'id' => 238,
+            //             'stage' => 'S1',
+            //             'name' => 'Universitas Multimedia Nasional',
+            //             'grade' => 4,
+            //         ],
+            //     ],
+            //     'skills' => [
+            //         [
+            //             'id' => 945,
+            //             'skill_type_id' => 1,
+            //             'name' => 'Bahasa Indonesia Tes',
+            //             'grade' => 5,
+            //         ],
+            //         [
+            //             'id' => 946,
+            //             'skill_type_id' => 1,
+            //             'name' => 'English Tes',
+            //             'grade' => 5,
+            //         ],
+            //         [
+            //             'id' => 949,
+            //             'skill_type_id' => 2,
+            //             'name' => 'Adaptasi',
+            //             'grade' => 5,
+            //         ],
+            //         [
+            //             'id' => 950,
+            //             'skill_type_id' => 3,
+            //             'name' => 'PHP',
+            //             'grade' => 3,
+            //         ],
+            //         [
+            //             'id' => 951,
+            //             'skill_type_id' => 3,
+            //             'name' => 'MySQL',
+            //             'grade' => 3,
+            //         ],
+            //         [
+            //             'id' => 952,
+            //             'skill_type_id' => 3,
+            //             'name' => 'HTML/JavaScript/CSS',
+            //             'grade' => 4,
+            //         ],
+            //         [
+            //             'id' => 952,
+            //             'skill_type_id' => 3,
+            //             'name' => 'Vue.JS',
+            //             'grade' => 5,
+            //         ],
+            //         [
+            //             'id' => 952,
+            //             'skill_type_id' => 3,
+            //             'name' => 'Angular.JS',
+            //             'grade' => 4,
+            //         ],
+            //     ],
+            //     'expectations' => [
+            //         [
+            //             'id' => 355,
+            //             'expectation_id' => 1,
+            //             'grade' => 0,
+            //         ],
+            //         [
+            //             'id' => 356,
+            //             'expectation_id' => 2,
+            //             'grade' => 3,
+            //         ],
+            //         [
+            //             'id' => 357,
+            //             'expectation_id' => 3,
+            //             'grade' => 5,
+            //         ],
+            //     ],
+            //     'applications' => [
+            //         [
+            //             'id' => 119,
+            //             'job_id' => 1,
+            //             'requirements' => [
+            //                 [
+            //                     'id' => 121,
+            //                     'job_requirement_id' => 1,
+            //                     'grade' => 1
+            //                 ],
+            //                 [
+            //                     'id' => 122,
+            //                     'job_requirement_id' => 2,
+            //                     'grade' => 5
+            //                 ],
+            //             ]
+            //         ]
+            //     ],
+            // ];
+
             // dd($data);
 
 	        $applicant = $this->buildAndCreateOrUpdateApplicant($data);

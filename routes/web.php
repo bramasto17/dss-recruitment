@@ -378,5 +378,10 @@ Route::group(['middleware' => ['auth']], function ()
         Route::get('delete/{id}', 'ApplicantsController@delete')->name('delete-applicants');
     });
 
+    Route::group(['prefix' => 'applications'], function($router) {
+        Route::get('/', 'ApplicationsController@getAll')->name('list-applications');
+        Route::get('/{id}', 'ApplicationsController@getById')->name('detail-applictions');
+    });
+
 
 });

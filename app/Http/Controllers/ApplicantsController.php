@@ -18,7 +18,7 @@ class ApplicantsController extends Controller
     {
         $attributes = $request->all();
         $results = $this->applicantsService->getAll($attributes);
-        dd($results);
+        // dd($results);
 
         return view('hrms.applicants.list', compact('results'));
     }

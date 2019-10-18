@@ -15,7 +15,7 @@ class ApplicantsService extends \App\Services\BaseService
 {
     private $jobsService;
 
-    private $include = ['careers','educations','expectations','skills','applications','applications.requirements'];
+    private $include = ['careers','educations','expectations','skills','applications', 'applications.job', 'applications.job.type', 'applications.job.position', 'applications.requirements'];
 
     public function __construct(JobsService $jobsService) {
         $this->jobsService = $jobsService;

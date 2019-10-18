@@ -18,6 +18,11 @@ class Applications extends Model
         return $this->belongsTo('App\Models\Applicants', 'applicant_id', 'id');
     }
 
+    public function job()
+    {
+        return $this->belongsTo('App\Models\Jobs', 'job_id', 'id');
+    }
+
     public function requirements()
     {
         return $this->hasMany('App\Models\ApplicationRequirements', 'application_id', 'id');

@@ -98,6 +98,20 @@
         </li>
 
         <li>
+            <a class="accordion-toggle" href="/applicants">
+                <span class="fa fa-user"></span>
+                <span class="sidebar-title">Applications</span>
+                <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+                <li>
+                    <a href="{{route('list-applicants')}}">
+                        <span class="glyphicon glyphicon-tags"></span> Applications Listing </a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
             <a class="accordion-toggle" href="/dashboard">
                 <span class="fa fa-user"></span>
                 <span class="sidebar-title">Employees</span>

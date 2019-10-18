@@ -43,9 +43,7 @@ class ApplicationsService extends \App\Services\BaseService
 
     public function getAll($attributes = [])
     {
-        // dd('sfsahehe');
         $results = $this->queryBuilder(Jobs::class, $attributes, $this->include)->get()->toArray();
-
 
         return $results;
     }

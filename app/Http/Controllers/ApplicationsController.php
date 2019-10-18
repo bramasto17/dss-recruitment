@@ -18,7 +18,7 @@ class ApplicationsController extends Controller
     {
         $attributes = $request->all();
         $results = $this->applicationsService->getAll($attributes);
-        dd($results);
+        // dd($results);
 
         return view('hrms.applications.list', compact('results'));
     }

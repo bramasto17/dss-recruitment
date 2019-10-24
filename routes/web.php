@@ -376,6 +376,8 @@ Route::group(['middleware' => ['auth']], function ()
         // Route::get('edit/{id}', 'ApplicantsController@update')->name('edit-applicants');
         Route::post('edit/{id}', 'ApplicantsController@update');
         Route::get('delete/{id}', 'ApplicantsController@delete')->name('delete-applicants');
+        
+        Route::get('/job-data/{id}', 'ApplicantsController@getJobData')->name('job-data');
     });
 
     Route::group(['prefix' => 'applications'], function($router) {

@@ -9,6 +9,8 @@ use App\Models\ApplicantExpectations;
 use App\Models\ApplicantSkills;
 use App\Models\Applications;
 use App\Models\ApplicationRequirements;
+use App\Models\Expectations;
+use App\Models\SkillTypes;
 use App\Services\JobsService;
 
 class ApplicantsService extends \App\Services\BaseService
@@ -343,6 +345,66 @@ class ApplicantsService extends \App\Services\BaseService
     public function getJobs()
     {
         return $this->jobsService->getAll(null);
+    }
+
+    public function getJobData($id)
+    {
+        return $this->jobsService->getById($id);
+    }
+
+    public function getSkillTypes()
+    {
+        $results = $this->queryBuilder(SkillTypes::class, [], [])->get()->toArray();
+
+        return $results;
+    }
+
+    public function getExpectations()
+    {
+        $results = $this->queryBuilder(Expectations::class, [], [])->get()->toArray();
+
+        return $results;
+    }
+
+    public function getReligions()
+    {
+        $results = [
+            'Islam',
+            'Christian',
+            'Catholic',
+            'Hindu',
+            'Buddha',
+            'Kong Hu Cu',
+        ];
+
+        return $results;
+    }
+
+    public function getEducationStages()
+    {
+        $results = [
+            'SMP',
+            'SMA',
+            'D3',
+            'S1',
+            'S2',
+            'S3',
+        ];
+
+        return $results;
+    }
+
+    public function getGrades()
+    {
+        $results = [
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+        ];
+
+        return $results;
     }
 
     protected function buildAndCreateOrUpdateApplicant(array $data)

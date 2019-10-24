@@ -13,18 +13,19 @@ class JobsService extends \App\Services\BaseService
     private $positionsService;
     public function __construct(PositionsService $positionsService) {
         $this->positionsService = $positionsService;
+        $this->include = ['position','position.department','type','requirements'];
     }
 
     public function getAll($attributes = [])
     {
-        $results = $this->queryBuilder(Jobs::class, $attributes, ['position','position.department','type'])->get()->toArray();
+        $results = $this->queryBuilder(Jobs::class, $attributes, $this->include)->get()->toArray();
 
         return $results;
     }
 
     public function getById($id)
     {
-        $result = Jobs::with('position','type','requirements')->where('id', $id)->firstOrFail()->toArray();
+        $result = Jobs::with($this->include)->where('id', $id)->firstOrFail()->toArray();
 
         return $result;
     }

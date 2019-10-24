@@ -8,10 +8,16 @@
     <div class="col-md-2">
         <select class="select2-multiple form-control select-primary"
                 name="job_requirement_grade[]" required>
-            <option value="" selected>Grade</option>
-            @foreach($grades as $grade)
-                <option value="{{$grade}}">{{$grade}}</option>
-            @endforeach
+            @if($requirement['job_requirement_type_id'] == 1)
+                <option value="" selected>Yes/No</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            @else
+                <option value="" selected>Grade</option>
+                @foreach($grades as $grade)
+                    <option value="{{$grade}}">{{$grade}}</option>
+                @endforeach
+            @endif
         </select>
     </div>
 </div>

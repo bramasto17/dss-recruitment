@@ -17,9 +17,10 @@ class CreateJobRequirementsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('job_id')->nullable();
             $table->foreign('job_id')->references('id')->on('jobs');
-            $table->unsignedInteger('job_requirement_type_id')->nullable();
-            $table->foreign('job_requirement_type_id')->references('id')->on('job_requirement_types');
+            $table->unsignedInteger('skill_id')->nullable();
+            $table->foreign('skill_id')->references('id')->on('skills');
             $table->string('name');
+            $table->integer('priority')->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->softDeletes();

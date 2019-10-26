@@ -16,6 +16,7 @@ class CreateSkillTypesTable extends Migration
         Schema::create('skill_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('grade');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->softDeletes();

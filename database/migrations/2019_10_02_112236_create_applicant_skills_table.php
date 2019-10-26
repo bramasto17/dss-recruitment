@@ -17,10 +17,8 @@ class CreateApplicantSkillsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('applicant_id')->nullable();
             $table->foreign('applicant_id')->references('id')->on('applicants');
-            $table->unsignedInteger('skill_type_id')->nullable();
-            $table->foreign('skill_type_id')->references('id')->on('skill_types');
-            $table->string('name');
-            $table->integer('grade');
+            $table->unsignedInteger('skill_id')->nullable();
+            $table->foreign('skill_id')->references('id')->on('skills');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->softDeletes();

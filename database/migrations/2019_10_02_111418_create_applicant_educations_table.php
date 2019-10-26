@@ -19,7 +19,8 @@ class CreateApplicantEducationsTable extends Migration
             $table->foreign('applicant_id')->references('id')->on('applicants');
             $table->string('stage');
             $table->string('name');
-            $table->integer('grade');
+            $table->unsignedInteger('education_status_id')->nullable();
+            $table->foreign('education_status_id')->references('id')->on('education_statuses');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->softDeletes();

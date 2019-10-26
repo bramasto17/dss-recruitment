@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExpectationsTable extends Migration
+class CreateSkillsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateExpectationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('expectations', function (Blueprint $table) {
+        Schema::create('skills', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('skill_type_id')->nullable();
+            $table->foreign('skill_type_id')->references('id')->on('skill_types');
             $table->string('name');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
@@ -29,6 +31,6 @@ class CreateExpectationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expectations');
+        Schema::dropIfExists('skills');
     }
 }

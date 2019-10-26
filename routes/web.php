@@ -26,7 +26,9 @@ Route::group(['middleware' => ['guest']], function ()
 
     Route::get('register', 'AuthController@showRegister');
 
-
+    Route::get('submit', 'ApplicantsController@add')->name('add-applicants');
+    Route::post('add', 'ApplicantsController@create');
+    Route::get('/job-data/{id}', 'ApplicantsController@getJobData')->name('job-data');
 });
 
 Route::group(['middleware' => ['auth']], function ()
@@ -370,14 +372,10 @@ Route::group(['middleware' => ['auth']], function ()
     Route::group(['prefix' => 'applicants'], function($router) {
         Route::get('/', 'ApplicantsController@getAll')->name('list-applicants');
         // Route::get('/', 'ApplicantsController@create')->name('list-applicants');
-        Route::get('add', 'ApplicantsController@add')->name('add-applicants');
-        Route::post('add', 'ApplicantsController@create');
         Route::get('edit/{id}', 'ApplicantsController@edit')->name('edit-applicants');
         // Route::get('edit/{id}', 'ApplicantsController@update')->name('edit-applicants');
         Route::post('edit/{id}', 'ApplicantsController@update');
-        Route::get('delete/{id}', 'ApplicantsController@delete')->name('delete-applicants');
-        
-        Route::get('/job-data/{id}', 'ApplicantsController@getJobData')->name('job-data');
+        Route::get('delete/{id}', 'ApplicantsController@delete')->name('delete-applicants');        
     });
 
     Route::group(['prefix' => 'applications'], function($router) {

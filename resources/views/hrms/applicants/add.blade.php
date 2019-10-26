@@ -1,12 +1,6 @@
-@extends('hrms.layouts.base')
+@extends('hrms.layouts.public-base')
 
 @section('content')
-    <?php 
-        $career_count = @$career_count ? $career_count : 0 ; 
-        $education_count = @$education_count ? $education_count : 0 ; 
-        $skill_count = @$skill_count ? $skill_count : 0 ; 
-        $expectation_count = @$expectation_count ? $expectation_count : 0 ; 
-    ?>
     <!-- START CONTENT -->
     <div class="content">
 

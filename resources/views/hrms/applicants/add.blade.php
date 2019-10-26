@@ -258,28 +258,7 @@
 
                                             <div id="job_requirements">
                                                 
-                                            </div>
-
-                                            <div id="expectations">
-                                                @foreach($expectations as $key => $expectation)
-                                                <div class="form-group">
-                                                    <label class="col-md-3 control-label">@if($key == 0) Expectations @endif</label>
-                                                    <input type="hidden" name="expectation_id[]" id="expectation_id" class="select2-single form-control" value="{{$expectation['id']}}" required>
-                                                    <div class="col-md-4">
-                                                        <span>{{$expectation['name']}}</span>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <select class="select2-multiple form-control select-primary"
-                                                                name="expectation_grade[]" required>
-                                                            <option value="" selected>Grade</option>
-                                                            @foreach($grades as $grade)
-                                                                <option value="{{$grade}}">{{$grade}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                @endforeach
-                                            </div>                                            
+                                            </div>                                         
 
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label"></label>

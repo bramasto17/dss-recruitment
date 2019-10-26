@@ -28,11 +28,6 @@ class Applicants extends Model
         return $this->hasMany('App\Models\ApplicantEducations', 'applicant_id', 'id');
     }
 
-    public function expectations()
-    {
-        return $this->hasMany('App\Models\ApplicantExpectations', 'applicant_id', 'id');
-    }
-
     public function skills()
     {
         return $this->hasMany('App\Models\ApplicantSkills', 'applicant_id', 'id');
@@ -55,10 +50,6 @@ class Applicants extends Model
         $hard = $this->skills->where('skill_type_id',3)->sum('grade');
 
         return ($language * 1) + ($soft * 1.5) + ($hard * 2);
-    }
-
-    public function getExpectationScoreAttribute()
-    {
-        return $this->expectations->sum('grade');
+    } return $this->expectations->sum('grade');
     }
 }

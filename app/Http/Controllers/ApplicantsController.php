@@ -29,10 +29,9 @@ class ApplicantsController extends Controller
         $religions = $this->applicantsService->getReligions();
         $grades = $this->applicantsService->getGrades();
         $education_stages = $this->applicantsService->getEducationStages();
-        $expectations = $this->applicantsService->getExpectations();
         $jobs = $this->applicantsService->getJobs();
 
-        return view('hrms.applicants.add', compact('skill_types','religions','grades','education_stages','expectations','jobs'));
+        return view('hrms.applicants.add', compact('skill_types','religions','grades','education_stages','jobs'));
     }
 
     public function create(Request $request)

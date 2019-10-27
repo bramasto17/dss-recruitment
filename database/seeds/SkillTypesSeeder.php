@@ -16,12 +16,15 @@ class SkillTypesSeeder extends Seeder
         \DB::table('skill_types')->insert([
             [
                 'name' => 'Language Skill',
+                'grade' => 1,
             ],
             [
                 'name' => 'Soft Skill',
+                'grade' => 2,
             ],
             [
                 'name' => 'Hard Skill',
+                'grade' => 3,
             ]
         ]);
         Schema::enableForeignKeyConstraints();

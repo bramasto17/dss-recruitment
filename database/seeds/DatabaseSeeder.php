@@ -16,12 +16,12 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesSeeder::class);
         $this->call(UserRolesSeeder::class);
         $this->call(JobTypesSeeder::class);
-        $this->call(JobRequirementsSeeder::class);
-        $this->call(JobRequirementTypesSeeder::class);
         $this->call(DepartmentsSeeder::class);
         $this->call(PositionsSeeder::class);
         $this->call(JobsSeeder::class);
         $this->call(SkillTypesSeeder::class);
-        $this->call(ExpectationsSeeder::class);
+        $this->call(EducationStatusesSeeder::class);
+        $this->call(CareerStatusesSeeder::class);
+        $this->call(SkillsSeeder::class);
     }
 }

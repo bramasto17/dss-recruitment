@@ -242,28 +242,7 @@
     <!-- -------------- /Header  -------------- -->
 
     <!-- -------------- Sidebar  -------------- -->
-    <aside id="sidebar_left" class="nano nano-light affix">
-
-        <!-- -------------- Sidebar Left Wrapper  -------------- -->
-        <div class="sidebar-left-content nano-content">
-
-            <!-- -------------- Sidebar Header -------------- -->
-            <header class="sidebar-header">
-
-                <!-- -------------- Sidebar - Author -------------- -->
-
-            <!-- -------------- Sidebar Hide Button -------------- -->
-            <div class="sidebar-toggler">
-                <a href="#">
-                    <span class="fa fa-arrow-circle-o-left"></span>
-                </a>
-            </div>
-            <!-- -------------- /Sidebar Hide Button -------------- -->
-
-        </div>
-        <!-- -------------- /Sidebar Left Wrapper  -------------- -->
-
-    </aside>
+    
 
     <!-- -------------- /Sidebar -------------- -->
 

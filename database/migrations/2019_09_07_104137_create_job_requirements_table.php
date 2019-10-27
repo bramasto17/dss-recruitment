@@ -19,7 +19,6 @@ class CreateJobRequirementsTable extends Migration
             $table->foreign('job_id')->references('id')->on('jobs');
             $table->unsignedInteger('skill_id')->nullable();
             $table->foreign('skill_id')->references('id')->on('skills');
-            $table->string('name');
             $table->integer('priority')->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));

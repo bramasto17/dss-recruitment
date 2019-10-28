@@ -18,20 +18,19 @@ class ApplicantsController extends Controller
     {
         $attributes = $request->all();
         $results = $this->applicantsService->getAll($attributes);
-        // dd($results);
 
         return view('hrms.applicants.list', compact('results'));
     }
 
     public function add()
     {
-        $skill_types = $this->applicantsService->getSkillTypes();
         $religions = $this->applicantsService->getReligions();
-        $grades = $this->applicantsService->getGrades();
-        $education_stages = $this->applicantsService->getEducationStages();
+        $career_statuses = $this->applicantsService->getCareerStatuses();
+        $education_statuses = $this->applicantsService->getEducationStatuses();
         $jobs = $this->applicantsService->getJobs();
+        $skills = $this->applicantsService->getSkills();
 
-        return view('hrms.applicants.add', compact('skill_types','religions','grades','education_stages','jobs'));
+        return view('hrms.applicants.add', compact('religions','career_statuses','education_statuses','jobs','skills'));
     }
 
     public function create(Request $request)

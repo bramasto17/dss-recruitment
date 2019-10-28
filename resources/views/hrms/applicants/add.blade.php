@@ -40,6 +40,19 @@
                                             @endif
                                             {!! Form::open(['class' => 'form-horizontal']) !!}
                                             <input type="hidden" value="{!! csrf_token() !!}" id="token">
+
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label"> Job Applied </label>
+                                                <div class="col-md-6">
+                                                    <select class="select2-multiple form-control select-primary" name="job_id" id="job_id" required>
+                                                        <option value="" selected>Job Applied</option>
+                                                        @foreach($jobs as $job)
+                                                            <option value="{{$job['id']}}">{{$job['position']['name'].' '.$job['type']['name']}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label"> Name </label>
                                                 <div class="col-md-6">
@@ -155,10 +168,10 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <select class="select2-multiple form-control select-primary"
-                                                                name="career_grade[]" required>
-                                                            <option value="" selected>Grade</option>
-                                                            @foreach($grades as $grade)
-                                                                <option value="{{$grade}}">{{$grade}}</option>
+                                                                name="career_status[]" required>
+                                                            <option value="" selected>Status</option>
+                                                            @foreach($career_statuses as $career_status)
+                                                                <option value="{{$career_status['id']}}">{{$career_status['name']}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -177,22 +190,13 @@
                                                         <select class="select2-multiple form-control select-primary"
                                                                 name="education_stage[]" required>
                                                             <option value="" selected>Stage</option>
-                                                            @foreach($education_stages as $stage)
-                                                                <option value="{{$stage}}">{{$stage}}</option>
+                                                            @foreach($education_statuses as $education_status)
+                                                                <option value="{{$education_status['id']}}">{{$education_status['name']}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-4">
                                                         <input type="text" name="education_name[]" id="education_name" class="select2-single form-control" placeholder="Education Name" required>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <select class="select2-multiple form-control select-primary"
-                                                                name="education_grade[]" required>
-                                                            <option value="" selected>Grade</option>
-                                                            @foreach($grades as $grade)
-                                                                <option value="{{$grade}}">{{$grade}}</option>
-                                                            @endforeach
-                                                        </select>
                                                     </div>
                                                     <div class="col-md-2 control-label text-left">
                                                         <a href=""><span class="add_education label label-info">
@@ -200,55 +204,19 @@
                                                         </span></a>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                            <div id="skills">
-                                                <div class="form-group">
-                                                    <label class="col-md-3 control-label"> Skills </label>
-                                                    <div class="col-md-2">
-                                                        <input type="text" name="skill_name[]" id="skill_name" class="select2-single form-control" placeholder="Name" required>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <select class="select2-multiple form-control select-primary"
-                                                                name="skill_type_id[]" required>
-                                                            <option value="" selected>Skill Type</option>
-                                                            @foreach($skill_types as $skill_type)
-                                                                <option value="{{$skill_type['id']}}">{{$skill_type['name']}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <select class="select2-multiple form-control select-primary"
-                                                                name="skill_grade[]" required>
-                                                            <option value="" selected>Grade</option>
-                                                            @foreach($grades as $grade)
-                                                                <option value="{{$grade}}">{{$grade}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-2 control-label text-left">
-                                                        <a href=""><span class="add_skill label label-info">
-                                                            Add Skill
-                                                        </span></a>
-                                                    </div>
-                                                </div>
-                                            </div> 
+                                            </div>                                   
 
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label"> Job Applied </label>
+                                                <label class="col-md-3 control-label"> Skills </label>
                                                 <div class="col-md-6">
-                                                    <select class="select2-multiple form-control select-primary" name="job_id" id="job_id" required>
-                                                        <option value="" selected>Job Applied</option>
-                                                        @foreach($jobs as $job)
-                                                            <option value="{{$job['id']}}">{{$job['position']['name'].' '.$job['type']['name']}}</option>
+                                                    <select class="form-control select-primary"
+                                                            name="skill_id[]" id="skill_drp" required>
+                                                        @foreach($skills as $skill)
+                                                            <option value="{{$skill['id']}}">{{$skill['name']}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
-                                            <div id="job_requirements">
-                                                
-                                            </div>                                         
 
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label"></label>
@@ -275,24 +243,23 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/assets/js/custom.js"></script>
+    <script src="/assets/js/function.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#skill_drp').attr("multiple","multiple");
+            $('#skill_drp').val("");
+            $('#skill_drp').select2({
+            });
+        });
+    </script>
     <script>
-        var skill_wrapper = $("#skills");
-        var add_skill = $(".add_skill");
-        $(add_skill).click(function(e){ //on add input button click
-            e.preventDefault();
-            $(skill_wrapper).append('<div class="form-group"> <label class="col-md-3 control-label"> </label> <div class="col-md-2"> <input type="text" name="skill_name[]" id="skill_name" class="select2-single form-control" placeholder="Name" required> </div><div class="col-md-2"> <select class="select2-multiple form-control select-primary" name="skill_type_id[]" required> <option value="" selected>Skill Type</option> @foreach($skill_types as $skill_type) <option value="{{$skill_type['id']}}">{{$skill_type['name']}}</option> @endforeach </select> </div><div class="col-md-2"> <select class="select2-multiple form-control select-primary" name="skill_grade[]" required> <option value="" selected>Grade</option> @foreach($grades as $grade) <option value="{{$grade}}">{{$grade}}</option> @endforeach </select> </div></div>');
-        });
-        $(skill_wrapper).on("click",".remove_skill", function(e){
-            console.log('sdsf');
-            e.preventDefault(); 
-            $(this).parent('div').remove();
-        });
 
         var career_wrapper = $("#careers");
         var add_career = $(".add_career");
         $(add_career).click(function(e){ //on add input button click
             e.preventDefault();
-            $(career_wrapper).append('<div class="form-group"> <label class="col-md-3 control-label"> </label> <div class="col-md-2"> <input type="text" name="career_position[]" id="career_position" class="select2-single form-control" placeholder="Position" required> </div><div class="col-md-2"> <input type="text" name="career_company[]" id="career_company" class="select2-single form-control" placeholder="Company Name" required> </div><div class="col-md-2"> <select class="select2-multiple form-control select-primary" name="career_grade[]" required> <option value="" selected>Grade</option> @foreach($grades as $grade) <option value="{{$grade}}">{{$grade}}</option> @endforeach </select> </div></div>');
+            $(career_wrapper).append('<div class="form-group"> <label class="col-md-3 control-label"> </label> <div class="col-md-2"> <input type="text" name="career_position[]" id="career_position" class="select2-single form-control" placeholder="Position" required> </div><div class="col-md-2"> <input type="text" name="career_company[]" id="career_company" class="select2-single form-control" placeholder="Company Name" required> </div><div class="col-md-2"> <select class="select2-multiple form-control select-primary" name="career_status[]" required> <option value="" selected>Status</option> @foreach($career_statuses as $status) <option value="{{$status['id']}}">{{$status['name']}}</option> @endforeach </select> </div></div>');
         });
         $(career_wrapper).on("click",".remove_career", function(e){
             console.log('sdsf');
@@ -304,54 +271,12 @@
         var add_education = $(".add_education");
         $(add_education).click(function(e){ //on add input button click
             e.preventDefault();
-            $(education_wrapper).append('<div class="form-group"> <label class="col-md-3 control-label"> </label> <div class="col-md-2"> <select class="select2-multiple form-control select-primary" name="education_stage[]" required> <option value="" selected>Stage</option> @foreach($education_stages as $stage) <option value="{{$stage}}">{{$stage}}</option> @endforeach </select> </div><div class="col-md-2"> <input type="text" name="education_name[]" id="education_name" class="select2-single form-control" placeholder="Education Name" required> </div><div class="col-md-2"> <select class="select2-multiple form-control select-primary" name="education_grade[]" required> <option value="" selected>Grade</option> @foreach($grades as $grade) <option value="{{$grade}}">{{$grade}}</option> @endforeach </select> </div></div>');
+            $(education_wrapper).append('<div class="form-group"> <label class="col-md-3 control-label"> </label> <div class="col-md-2"> <select class="select2-multiple form-control select-primary" name="education_stage[]" required> <option value="" selected>Stage</option> @foreach($education_statuses as $status) <option value="{{$status['id']}}">{{$status['name']}}</option> @endforeach </select> </div><div class="col-md-4"> <input type="text" name="education_name[]" id="education_name" class="select2-single form-control" placeholder="Education Name" required> </div></div>');
         });
         $(education_wrapper).on("click",".remove_education", function(e){
             console.log('sdsf');
             e.preventDefault(); 
             $(this).parent('div').remove();
         });
-
-        jQuery.ajaxSetup({
-                beforeSend: function() {
-                   $('#job_requirements').empty();
-                },
-                complete: function(){
-                },
-                success: function() {}
-              });
-              // $(document).ready(function() {
-              //   $('#job_id').select2();
-              // });
-              // bind change event to select
-              var job = $('#job_id');
-              $( document ).ready(function() {
-                  job.trigger('change');
-              });
-              job.on('change', function () {
-                  var id = $(this).val(); // get selected value
-                  var token = $('#token').val(); // get selected value
-                  // alert(id);
-
-                  // if (url) { // require a URL
-                      // window.location = '/profile-emp/'+url; // redirect
-                  // }
-                  // var url = {!! json_encode(\Route::getFacadeRoot()->current()->uri() == 'profile') !!};
-                  // url = (url == true) ? 'profile-data' : 'profile-emp-data';
-
-                  // var data = {job_id:  id, _token: token};
-                  $.ajax({
-                        type: "GET",
-                        dataType: 'json',
-                        url: 'job-data/'+id,
-                        success: function (data) {
-                             // console.log(data.html);
-                            $('#job_requirements').html(data.html);
-                             // window.location = "/profile-emp";
-                        },error: function(XMLHttpRequest, textStatus, errorThrown) {
-                         console.log(errorThrown);
-                      }
-                    });
-              });
     </script>
 @endsection

@@ -603,6 +603,10 @@ h
 <!-- Sweet alert -->
 <script src="/assets/js/sweetalert.min.js"></script>
 
+<!--  Searchable and Multiselect Dropdown -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
 {{--@if(\Route::getFacadeRoot()->current()->uri() == 'assign-asset')--}}
     {{--<script src="/assets/js/pages/forms-widgets.js"></script>--}}
     {{--<script src="/assets/js/custom.js"></script>--}}

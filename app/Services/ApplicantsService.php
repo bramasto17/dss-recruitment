@@ -9,8 +9,10 @@ use App\Models\ApplicantExpectations;
 use App\Models\ApplicantSkills;
 use App\Models\Applications;
 use App\Models\ApplicationRequirements;
+use App\Models\CareerStatuses;
+use App\Models\EducationStatuses;
 use App\Models\Expectations;
-use App\Models\SkillTypes;
+use App\Models\Skills;
 use App\Services\JobsService;
 
 class ApplicantsService extends \App\Services\BaseService
@@ -42,139 +44,139 @@ class ApplicantsService extends \App\Services\BaseService
     public function createOrUpdate(array $data)
     {
     	return $this->atomic(function() use ($data) {
-            $data = [
-                'applicant' => [
-                    // 'id' => 119,
-                    'name' => 'Bramasto Wibisono',
-                    'birthday' => '1997-07-20',
-                    'address' => 'BSD',
-                    'marital_status' => 0,
-                    'phone' => '+6285718789603',
-                    'email' => 'bram@wibi.com',
-                    'id_card_no' => '1231231231231',
-                    'id_card_address' => 'BSD',
-                    'npwp_no' => '1231231231231',
-                    'gender' => 'Male',
-                    'religion' => 'Islam',
-                ],
-                'careers' => [
-                    [
-                        // 'id' => 237,
-                        'position' => 'Associate Member Web Developer',
-                        'company_name' => 'IT Division Binus School International',
-                        'career_start' => '2017-03-01',
-                        'career_end' => '2017-12-31',
-                        'grade' => 4,
-                    ],
-                    [
-                        // 'id' => 238,
-                        'position' => 'Software Engineer Intern',
-                        'company_name' => 'Bridestory (PT. Cerita Bahagia)',
-                        'career_start' => '2018-08-13',
-                        'career_end' => '2019-02-28',
-                        'grade' => 4,
-                    ],
-                ],
-                'educations' => [
-                    [
-                        // 'id' => 237,
-                        'stage' => 'SMA',
-                        'name' => 'SMA Islam Al Azhar BSD',
-                        'grade' => 4,
-                    ],
-                    [
-                        // 'id' => 238,
-                        'stage' => 'S1',
-                        'name' => 'Binus University',
-                        'grade' => 5,
-                    ],
-                ],
-                'skills' => [
-                    [
-                        // 'id' => 945,
-                        'skill_type_id' => 1,
-                        'name' => 'Bahasa Indonesia',
-                        'grade' => 5,
-                    ],
-                    [
-                        // 'id' => 946,
-                        'skill_type_id' => 1,
-                        'name' => 'English',
-                        'grade' => 5,
-                    ],
-                    [
-                        // 'id' => 947,
-                        'skill_type_id' => 2,
-                        'name' => 'Cepat Belajar',
-                        'grade' => 5,
-                    ],
-                    [
-                        // 'id' => 948,
-                        'skill_type_id' => 2,
-                        'name' => 'Komunikasi',
-                        'grade' => 3,
-                    ],
-                    [
-                        // 'id' => 949,
-                        'skill_type_id' => 2,
-                        'name' => 'Adaptasi',
-                        'grade' => 2,
-                    ],
-                    [
-                        // 'id' => 950,
-                        'skill_type_id' => 3,
-                        'name' => 'PHP',
-                        'grade' => 5,
-                    ],
-                    [
-                        // 'id' => 951,
-                        'skill_type_id' => 3,
-                        'name' => 'MySQL',
-                        'grade' => 4,
-                    ],
-                    [
-                        // 'id' => 952,
-                        'skill_type_id' => 3,
-                        'name' => 'HTML/JavaScript/CSS',
-                        'grade' => 4,
-                    ],
-                ],
-                'expectations' => [
-                    [
-                        // 'id' => 355,
-                        'expectation_id' => 1,
-                        'grade' => 1,
-                    ],
-                    [
-                        // 'id' => 356,
-                        'expectation_id' => 2,
-                        'grade' => 2,
-                    ],
-                    [
-                        // 'id' => 357,
-                        'expectation_id' => 3,
-                        'grade' => 3,
-                    ],
-                ],
-                'applications' => [
-                    [
-                        // 'id' => 119,
-                        'job_id' => 1,
-                        'requirements' => [
-                            [
-                                // 'id' => 121,
-                                'job_requirement_id' => 1,
-                                'grade' => 0
-                            ],
-                            [
-                                // 'id' => 122,
-                                'job_requirement_id' => 2,
-                                'grade' => 3
-                            ],
-                        ]
-                    ]
-                ],
-            ];
+            // $data = [
+            //     'applicant' => [
+            //         // 'id' => 119,
+            //         'name' => 'Bramasto Wibisono',
+            //         'birthday' => '1997-07-20',
+            //         'address' => 'BSD',
+            //         'marital_status' => 0,
+            //         'phone' => '+6285718789603',
+            //         'email' => 'bram@wibi.com',
+            //         'id_card_no' => '1231231231231',
+            //         'id_card_address' => 'BSD',
+            //         'npwp_no' => '1231231231231',
+            //         'gender' => 'Male',
+            //         'religion' => 'Islam',
+            //     ],
+            //     'careers' => [
+            //         [
+            //             // 'id' => 237,
+            //             'position' => 'Associate Member Web Developer',
+            //             'company_name' => 'IT Division Binus School International',
+            //             'career_start' => '2017-03-01',
+            //             'career_end' => '2017-12-31',
+            //             'grade' => 4,
+            //         ],
+            //         [
+            //             // 'id' => 238,
+            //             'position' => 'Software Engineer Intern',
+            //             'company_name' => 'Bridestory (PT. Cerita Bahagia)',
+            //             'career_start' => '2018-08-13',
+            //             'career_end' => '2019-02-28',
+            //             'grade' => 4,
+            //         ],
+            //     ],
+            //     'educations' => [
+            //         [
+            //             // 'id' => 237,
+            //             'stage' => 'SMA',
+            //             'name' => 'SMA Islam Al Azhar BSD',
+            //             'grade' => 4,
+            //         ],
+            //         [
+            //             // 'id' => 238,
+            //             'stage' => 'S1',
+            //             'name' => 'Binus University',
+            //             'grade' => 5,
+            //         ],
+            //     ],
+            //     'skills' => [
+            //         [
+            //             // 'id' => 945,
+            //             'skill_type_id' => 1,
+            //             'name' => 'Bahasa Indonesia',
+            //             'grade' => 5,
+            //         ],
+            //         [
+            //             // 'id' => 946,
+            //             'skill_type_id' => 1,
+            //             'name' => 'English',
+            //             'grade' => 5,
+            //         ],
+            //         [
+            //             // 'id' => 947,
+            //             'skill_type_id' => 2,
+            //             'name' => 'Cepat Belajar',
+            //             'grade' => 5,
+            //         ],
+            //         [
+            //             // 'id' => 948,
+            //             'skill_type_id' => 2,
+            //             'name' => 'Komunikasi',
+            //             'grade' => 3,
+            //         ],
+            //         [
+            //             // 'id' => 949,
+            //             'skill_type_id' => 2,
+            //             'name' => 'Adaptasi',
+            //             'grade' => 2,
+            //         ],
+            //         [
+            //             // 'id' => 950,
+            //             'skill_type_id' => 3,
+            //             'name' => 'PHP',
+            //             'grade' => 5,
+            //         ],
+            //         [
+            //             // 'id' => 951,
+            //             'skill_type_id' => 3,
+            //             'name' => 'MySQL',
+            //             'grade' => 4,
+            //         ],
+            //         [
+            //             // 'id' => 952,
+            //             'skill_type_id' => 3,
+            //             'name' => 'HTML/JavaScript/CSS',
+            //             'grade' => 4,
+            //         ],
+            //     ],
+            //     'expectations' => [
+            //         [
+            //             // 'id' => 355,
+            //             'expectation_id' => 1,
+            //             'grade' => 1,
+            //         ],
+            //         [
+            //             // 'id' => 356,
+            //             'expectation_id' => 2,
+            //             'grade' => 2,
+            //         ],
+            //         [
+            //             // 'id' => 357,
+            //             'expectation_id' => 3,
+            //             'grade' => 3,
+            //         ],
+            //     ],
+            //     'applications' => [
+            //         [
+            //             // 'id' => 119,
+            //             'job_id' => 1,
+            //             'requirements' => [
+            //                 [
+            //                     // 'id' => 121,
+            //                     'job_requirement_id' => 1,
+            //                     'grade' => 0
+            //                 ],
+            //                 [
+            //                     // 'id' => 122,
+            //                     'job_requirement_id' => 2,
+            //                     'grade' => 3
+            //                 ],
+            //             ]
+            //         ]
+            //     ],
+            // ];
 
             // $data = [
             //     'applicant' => [
@@ -352,9 +354,9 @@ class ApplicantsService extends \App\Services\BaseService
         return $this->jobsService->getById($id);
     }
 
-    public function getSkillTypes()
+    public function getSkills()
     {
-        $results = $this->queryBuilder(SkillTypes::class, [], [])->get()->toArray();
+        $results = $this->queryBuilder(Skills::class, [], [])->get()->toArray();
 
         return $results;
     }
@@ -380,16 +382,16 @@ class ApplicantsService extends \App\Services\BaseService
         return $results;
     }
 
-    public function getEducationStages()
+    public function getEducationStatuses()
     {
-        $results = [
-            'SMP',
-            'SMA',
-            'D3',
-            'S1',
-            'S2',
-            'S3',
-        ];
+        $results = $this->queryBuilder(EducationStatuses::class, [], [])->get()->toArray();
+
+        return $results;
+    }
+
+    public function getCareerStatuses()
+    {
+        $results = $this->queryBuilder(CareerStatuses::class, [], [])->get()->toArray();
 
         return $results;
     }

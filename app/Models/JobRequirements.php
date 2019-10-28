@@ -14,11 +14,11 @@ class JobRequirements extends Model
 	
     public function job()
     {
-        return $this->belongTo('App\Models\Jobs', 'id', 'job_id');
+        return $this->belongsTo('App\Models\Jobs', 'job_id', 'id');
     }
 
-    public function type()
+    public function skill()
     {
-        return $this->belongTo('App\Models\JobRequirementTypes', 'id', 'job_type_id');
+        return $this->belongsTo('App\Models\Skills', 'skill_id', 'id');
     }
 }

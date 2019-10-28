@@ -27,8 +27,7 @@ Route::group(['middleware' => ['guest']], function ()
     Route::get('register', 'AuthController@showRegister');
 
     Route::get('submit', 'ApplicantsController@add')->name('add-applicants');
-    Route::post('add', 'ApplicantsController@create');
-    Route::get('/job-data/{id}', 'ApplicantsController@getJobData')->name('job-data');
+    Route::post('submit', 'ApplicantsController@create');
 });
 
 Route::group(['middleware' => ['auth']], function ()

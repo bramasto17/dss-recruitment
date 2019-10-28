@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Jobs;
 use App\Models\JobTypes;
 use App\Models\JobRequirements;
-use App\Models\JobRequirementTypes;
+use App\Models\Skills;
 use App\Services\PositionsService;
 
 class JobsService extends \App\Services\BaseService
@@ -13,7 +13,7 @@ class JobsService extends \App\Services\BaseService
     private $positionsService;
     public function __construct(PositionsService $positionsService) {
         $this->positionsService = $positionsService;
-        $this->include = ['position','position.department','type','requirements'];
+        $this->include = ['position','position.department','type','requirements','requirements.skill'];
     }
 
     public function getAll($attributes = [])
@@ -40,7 +40,7 @@ class JobsService extends \App\Services\BaseService
 
             $jobRequirements = $this->buildJobRequirementsData($data);
             foreach ($jobRequirements as $value) {
-                if($value['name'] != '')  $jobRequirement = JobRequirements::create($value)->toArray();
+                $jobRequirement = JobRequirements::create($value)->toArray();
             }
 
 	        return $job;
@@ -55,15 +55,27 @@ class JobsService extends \App\Services\BaseService
 
             $data['job_id'] = $id;
 
+            // $jobRequirements = $this->buildJobRequirementsData($data);
+            // foreach ($jobRequirements as $value) {
+            //     if(@$value['id'] == null){
+            //         if($value['name'] != '')  $jobRequirement = JobRequirements::create($value)->toArray();
+            //     }
+            //     else{
+            //         if($value['name'] != '') JobRequirements::where('id', $value['id'])->update($value);
+            //     }
+            // }
+
+            JobRequirements::where('job_id', $id)->whereNotIn('skill_id',$data['skill_id'])->delete();
             $jobRequirements = $this->buildJobRequirementsData($data);
             foreach ($jobRequirements as $value) {
-                if(@$value['id'] == null){
-                    if($value['name'] != '')  $jobRequirement = JobRequirements::create($value)->toArray();
+                if(JobRequirements::where('job_id',$id)->where('skill_id',$value['skill_id'])->exists()){
+                    JobRequirements::where('job_id',$id)->where('skill_id',$value['skill_id'])->update($value);
                 }
                 else{
-                    if($value['name'] != '') JobRequirements::where('id', $value['id'])->update($value);
-                }
+                    JobRequirements::where('job_id',$id)->where('skill_id',$value['skill_id'])->create($value)->toArray();
+                } 
             }
+
 
 	        $result = Jobs::where('id', $id)->firstOrFail()->toArray();
 
@@ -88,9 +100,9 @@ class JobsService extends \App\Services\BaseService
         return $results;
     }
 
-    public function getJobRequirementTypes($attributes = [])
+    public function getSkills($attributes = [])
     {
-        $results = $this->queryBuilder(JobRequirementTypes::class, $attributes, [])->get()->toArray();
+        $results = $this->queryBuilder(Skills::class, $attributes, [])->get()->toArray();
 
         return $results;
     }
@@ -105,20 +117,13 @@ class JobsService extends \App\Services\BaseService
     public function buildJobRequirementsData($data){
         $return = [];
 
-        foreach ($data['requirement'] as $key => $value) {
-            $obj = [
+        foreach ($data['skill_id'] as $value) {
+            $return[] = [
                 'job_id' => $data['job_id'],
-                'job_requirement_type_id' => $data['job_requirement_type_id'][$key],
-                'name' => $data['requirement'][$key],
-                'priority' => $data['priority'][$key],
+                'skill_id' => $value,
             ];
-
-            if(@$data['requirement_id'][$key]) {
-                $obj['id'] = $data['requirement_id'][$key];
-            }
-
-            $return[] = $obj;
         }
+
         return $return;
     }
 }

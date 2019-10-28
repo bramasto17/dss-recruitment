@@ -32,7 +32,7 @@
                         <div class="box box-success">
                             <div class="panel">
                                 <div class="panel-heading">
-                                    <span class="panel-title hidden-xs"> Edit {{$result['name']}} </span>
+                                    <span class="panel-title hidden-xs"> Edit Job </span>
                                 </div>
 
                                 <div class="panel-body pn">
@@ -79,54 +79,16 @@
                                                 </div>
                                             </div>
 
-                                            <div id="requirements">
-                                                @foreach($result['requirements'] as $key => $requirement)
-                                                    <div class="form-group">
-                                                        <input type="hidden" name="requirement_id[{{$i}}]" id="requirement_id" class="select2-single form-control" value="{{(@$requirement['id'] ? $requirement['id'] : null)}}">
-
-                                                        @if($key == 0)
-                                                        <label class="col-md-3 control-label"> Requirement </label>
-                                                        @else
-                                                        <label class="col-md-3 control-label"> </label>
-                                                        @endif
-                                                        <div class="col-md-2">
-                                                            <input type="text" name="requirement[{{$i}}]" id="requirement" class="select2-single form-control" placeholder="Name" value="{{$requirement['name']}}" required>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <select class="select2-multiple form-control select-primary"
-                                                                    name="job_requirement_type_id[{{$i}}]" required>
-                                                                <option value="" selected>Select One</option>
-                                                                @foreach($job_requirement_types as $job_requirement_type)
-                                                                    @if($requirement['job_requirement_type_id'] == $job_requirement_type['id'])
-                                                                        <option value="{{$job_requirement_type['id']}}" selected>{{$job_requirement_type['name']}}</option>
-                                                                    @else
-                                                                        <option value="{{$job_requirement_type['id']}}">{{$job_requirement_type['name']}}</option>
-                                                                    @endif
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="hidden" class="" name="priority[{{$i}}]" value="0">
-                                                                    @if($requirement['priority'] == 1)
-                                                                        <input type="checkbox" class="" name="priority[{{$i}}]" value="1" checked>Priority
-                                                                    @else
-                                                                        <input type="checkbox" class="" name="priority[{{$i}}]" value="1">Priority
-                                                                    @endif
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        @if($key == 0)
-                                                            <div class="col-md-2 control-label text-left">
-                                                                <a href=""><span class="add_requirement label label-info">
-                                                                    Add Requirement
-                                                                </span></a>
-                                                            </div>
-                                                        @endif
-                                                    </div>
-                                                    <?php $i++; ?>
-                                                @endforeach
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label"> Requirements </label>
+                                                <div class="col-md-6">
+                                                    <select class="form-control select-primary"
+                                                            name="skill_id[]" id="skill_drp" required>
+                                                        @foreach($skills as $skill)
+                                                            <option value="{{$skill['id']}}">{{$skill['name']}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
 
                                             <div class="form-group">
@@ -153,18 +115,21 @@
 
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-        var wrapper = $("#requirements");
-        var add_requirement = $(".add_requirement");
-        $(add_requirement).click(function(e){ //on add input button click
-            e.preventDefault();
-            $(wrapper).append('<?php $i=$i+1; ?><div class="form-group" id="requirements"><label class="col-md-3 control-label"> </label><div class="col-md-2"><input type="text" name="requirement[{{$i}}]" id="requirement" class="select2-single form-control" placeholder="Name" required></div><div class="col-md-2"><select class="select2-multiple form-control select-primary"name="job_requirement_type_id[{{$i}}]" required><option value="" selected>Select One</option>@foreach($job_requirement_types as $job_requirement_type)<option value="{{$job_requirement_type['id']}}">{{$job_requirement_type['name']}}</option>@endforeach</select></div><div class="col-md-2"><div class="checkbox"><label><input type="hidden" class="" name="priority[{{$i}}]" value="0"><input type="checkbox" class="" name="priority[{{$i}}]" value="1">Priority</label></div></div></div>');
-            // $(wrapper).append('<div class="form-group" id="requirements"><label class="col-md-3 control-label"> </label><div class="col-md-2"><input type="text" name="requirement[]" id="requirement" class="select2-single form-control" placeholder="Name" required></div><div class="col-md-2"><select class="select2-multiple form-control select-primary"name="job_requirement_type_id[]" required><option value="" selected>Select One</option>@foreach($job_requirement_types as $job_requirement_type)<option value="{{$job_requirement_type['id']}}">{{$job_requirement_type['name']}}</option>@endforeach</select></div><div class="col-md-2"><div class="checkbox"><label><input type="checkbox" class="" name="priority[]" value="1">Priority</label></div></div><div class="col-md-2 control-label text-left"> <a href=""><span class="remove_requirement label label-warning"> Remove Requirement</span></a></div></div>');
-        });
-        $(wrapper).on("click",".remove_requirement", function(e){
-            console.log('sdsf');
-            e.preventDefault(); 
-            $(this).parent('div').remove();
-        });
-    </script>
+    @push('scripts')
+        <script src="/assets/js/custom.js"></script>
+        <script src="/assets/js/function.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#skill_drp').attr("multiple","multiple");
+                var skill_chosen = [];
+                @foreach ($result['requirements'] as $value)
+                    skill_chosen.push({{$value['skill']['id']}});
+                @endforeach
+
+                $('#skill_drp').val(skill_chosen);
+                $('#skill_drp').select2({
+                });
+            });
+        </script>
+    @endpush
 @endsection

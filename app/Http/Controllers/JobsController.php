@@ -26,9 +26,9 @@ class JobsController extends Controller
     {
         $positions = $this->jobsService->getPositions();
         $job_types = $this->jobsService->getJobTypes();
-        $job_requirement_types = $this->jobsService->getJobRequirementTypes();
+        $skills = $this->jobsService->getSkills();
 
-        return view('hrms.jobs.add', compact('positions','job_types','job_requirement_types'));
+        return view('hrms.jobs.add', compact('positions','job_types','skills'));
     }
 
     public function create(Request $request)
@@ -44,11 +44,10 @@ class JobsController extends Controller
     {
         $positions = $this->jobsService->getPositions();
         $job_types = $this->jobsService->getJobTypes();
-        $job_requirement_types = $this->jobsService->getJobRequirementTypes();
+        $skills = $this->jobsService->getSkills();
         $result = $this->jobsService->getById($id);
-        // dd($result);
 
-        return view('hrms.jobs.edit', compact('result', 'positions','job_types','job_requirement_types'));
+        return view('hrms.jobs.edit', compact('result', 'positions','job_types','skills'));
     }
 
     public function update(Request $request, $id){

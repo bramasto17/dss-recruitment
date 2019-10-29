@@ -79,7 +79,7 @@
             </ul>
         </li>
 
-        <li>
+        <!-- <li>
             <a class="accordion-toggle" href="/applicants">
                 <span class="fa fa-user"></span>
                 <span class="sidebar-title">Applicants</span>
@@ -95,17 +95,17 @@
                         <span class="glyphicon glyphicon-tags"></span> Applicants Listing </a>
                 </li>
             </ul>
-        </li>
+        </li> -->
 
         <li>
-            <a class="accordion-toggle" href="/applicants">
+            <a class="accordion-toggle" href="/applications">
                 <span class="fa fa-user"></span>
                 <span class="sidebar-title">Applications</span>
                 <span class="caret"></span>
             </a>
             <ul class="nav sub-nav">
                 <li>
-                    <a href="{{route('list-applicants')}}">
+                    <a href="{{route('list-applications')}}">
                         <span class="glyphicon glyphicon-tags"></span> Applications Listing </a>
                 </li>
             </ul>

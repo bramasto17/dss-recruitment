@@ -306,21 +306,18 @@ class ApplicantsService extends \App\Services\BaseService
 
             // dd($data);
 
-	        $applicant = $this->buildAndCreateOrUpdateApplicant($data);
-            $data['applicant']['id'] = $applicant['id'];
-            
-            $careers = $this->buildAndCreateOrUpdateCareers($data);
-            $educations = $this->buildAndCreateOrUpdateEducations($data);
-            $skills = $this->buildAndCreateOrUpdateSkills($data);
-            $expectations = $this->buildAndCreateOrUpdateExpectations($data);
+	        $applicant = $this->buildAndCreateApplicant($data);
+            $data['id'] = $applicant['id'];
 
-            //build Applications and Application Details
-            $applications = $this->buildAndCreateOrUpdateApplications($data);
+            $careers = $this->buildAndCreateCareers($data);
+            $educations = $this->buildAndCreateEducations($data);
+            $skills = $this->buildAndCreateSkills($data);
+
+            $applications = $this->buildAndCreateApplication($data);
 
             $applicant['careers'] = $careers;
             $applicant['educations'] = $educations;
             $applicant['skills'] = $skills;
-            $applicant['expectations'] = $expectations;
             $applicant['applications'] = $applications;
             $result = $applicant;
 
@@ -409,78 +406,74 @@ class ApplicantsService extends \App\Services\BaseService
         return $results;
     }
 
-    protected function buildAndCreateOrUpdateApplicant(array $data)
+    protected function buildAndCreateApplicant(array $data)
     {
-        $applicant = $data['applicant'];
-        if(!@$applicant['id']){
-            $result = Applicants::create($applicant)->toArray();
-        }
-        else{
-            Applicants::where('id',$applicant['id'])->update($applicant);
-            $result = Applicants::where('id',$applicant['id'])->firstOrFail()->toArray();
-        }
+        $applicant = [
+            'name' => $data['name'],
+            'birthday' => $data['birthday'],
+            'address' => $data['address'],
+            'marital_status' => $data['marital_status'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'id_card_no' => $data['id_card_no'],
+            'id_card_address' => $data['id_card_address'],
+            'npwp_no' => $data['npwp_no'],
+            'gender' => $data['gender'],
+            'religion' => $data['religion'],
+        ];
+
+        $result = Applicants::create($applicant)->toArray();
 
         return $result;
     }
 
-    protected function buildAndCreateOrUpdateCareers(array $data)
+    protected function buildAndCreateCareers(array $data)
     {
         $results = [];
 
-        $careers = $data['careers'];
+        foreach ($data['career_position'] as $key => $value) {
+            $career = [
+                'applicant_id' => $data['id'],
+                'position' => $data['career_position'][$key],
+                'company_name' => $data['career_company'][$key],
+                'career_status_id' => $data['career_status'][$key],
+            ];
 
-        foreach ($careers as $career) {
-            $career['applicant_id'] = $data['applicant']['id'];
-
-            if(!@$career['id']){
-                $results[] = ApplicantCareers::create($career)->toArray();
-            }
-            else{
-                ApplicantCareers::where('id',$career['id'])->update($career);
-                $results[] = ApplicantCareers::where('id',$career['id'])->firstOrFail()->toArray();
-            }
+            $results[] = ApplicantCareers::create($career)->toArray();
         }
 
         return $results;
     }
 
-    protected function buildAndCreateOrUpdateEducations(array $data)
+    protected function buildAndCreateEducations(array $data)
     {
         $results = [];
 
-        $educations = $data['educations'];
+        foreach ($data['education_name'] as $key => $value) {
+            $education = [
+                'applicant_id' => $data['id'],
+                'stage' => '',
+                'name' => $data['education_name'][$key],
+                'education_status_id' => $data['education_stage'][$key],
+            ];
 
-        foreach ($educations as $education) {
-            $education['applicant_id'] = $data['applicant']['id'];
-
-            if(!@$education['id']){
-                $results[] = ApplicantEducations::create($education)->toArray();
-            }
-            else{
-                ApplicantEducations::where('id',$education['id'])->update($education);
-                $results[] = ApplicantEducations::where('id',$education['id'])->firstOrFail()->toArray();
-            }
+            $results[] = ApplicantEducations::create($education)->toArray();
         }
 
         return $results;
     }
 
-    protected function buildAndCreateOrUpdateSkills(array $data)
+    protected function buildAndCreateSkills(array $data)
     {
         $results = [];
 
-        $skills = $data['skills'];
+        foreach ($data['skill_id'] as $key => $value) {
+            $skill = [
+                'applicant_id' => $data['id'],
+                'skill_id' => $data['skill_id'][$key],
+            ];
 
-        foreach ($skills as $skill) {
-            $skill['applicant_id'] = $data['applicant']['id'];
-
-            if(!@$skill['id']){
-                $results[] = ApplicantSkills::create($skill)->toArray();
-            }
-            else{
-                ApplicantSkills::where('id',$skill['id'])->update($skill);
-                $results[] = ApplicantSkills::where('id',$skill['id'])->firstOrFail()->toArray();
-            }
+            $results[] = ApplicantSkills::create($skill)->toArray();
         }
 
         return $results;
@@ -506,43 +499,15 @@ class ApplicantsService extends \App\Services\BaseService
         return $results;
     }
 
-    protected function buildAndCreateOrUpdateApplications(array $data)
+    protected function buildAndCreateApplication(array $data)
     {
-        $results = [];
+        $application = [
+            'applicant_id' => $data['id'],
+            'job_id' => $data['job_id'],
+        ];
 
-        $applications = $data['applications'];
+        $result = Applications::create($application)->toArray();
 
-        foreach ($applications as $application) {
-            $application_requirements = $application['requirements'];
-            $application['applicant_id'] = $data['applicant']['id'];
-            unset($application['requirements']);
-            
-            if(!@$application['id']){
-                $application = Applications::create($application)->toArray();
-            }
-            else{
-                Applications::where('id',$application['id'])->update($application);
-                $application = Applications::where('id',$application['id'])->firstOrFail()->toArray();
-            }
-
-            $requirements = [];
-            foreach ($application_requirements as $application_requirement) {
-                $application_requirement['application_id'] = $application['id'];
-
-                if(!@$application_requirement['id']){
-                    $requirements[] = ApplicationRequirements::create($application_requirement)->toArray();
-                }
-                else{
-                    ApplicationRequirements::where('id',$application_requirement['id'])->update($application_requirement);
-                    $requirements[] = ApplicationRequirements::where('id',$application_requirement['id'])->firstOrFail()->toArray();
-                }
-            }
-
-            $application['requirements'] = $requirements;
-
-            $results[] = $application;
-        }
-
-        return $results;
+        return $result;
     }
 }

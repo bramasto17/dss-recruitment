@@ -36,7 +36,6 @@ class ApplicantsController extends Controller
     public function create(Request $request)
     {
         $attributes = $request->all();
-        dd($attributes);
         $result = $this->applicantsService->createOrUpdate($attributes);
 
         \Session::flash('flash_message', 'Applicant successfully Created!');

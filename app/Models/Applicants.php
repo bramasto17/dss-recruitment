@@ -11,7 +11,8 @@ class Applicants extends Model
     protected $table      = 'applicants';
 	protected $guarded    = array('id');
 	protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
-    protected $appends    = ['education_score', 'career_score', 'skill_score', 'expectation_score'];
+    // protected $appends    = ['education_score', 'career_score', 'skill_score', 'expectation_score'];
+    protected $appends    = ['career_score','education_score','skill_score','age_score','marital_score'];
 
 	public function applications()
     {
@@ -45,11 +46,16 @@ class Applicants extends Model
 
     public function getSkillScoreAttribute()
     {
-        $language = $this->skills->where('skill_type_id',1)->sum('grade');
-        $soft = $this->skills->where('skill_type_id',2)->sum('grade');
-        $hard = $this->skills->where('skill_type_id',3)->sum('grade');
+        return $this->skills->sum('grade');
+    }
 
-        return ($language * 1) + ($soft * 1.5) + ($hard * 2);
-    } return $this->expectations->sum('grade');
+    public function getAgeScoreAttribute()
+    {
+        return 27;
+    }
+
+    public function getMaritalScoreAttribute()
+    {
+        return $this->marital_status;
     }
 }

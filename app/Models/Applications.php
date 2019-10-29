@@ -11,7 +11,7 @@ class Applications extends Model
     protected $table      = 'applications';
 	protected $guarded    = array('id');
     protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
-	protected $appends    = ['requirement_score', 'education_score', 'career_score', 'skill_score', 'expectation_score', 'criteria_score'];
+	protected $appends    = ['education_score', 'career_score', 'skill_score', 'age_score', 'marital_score', 'criteria_score'];
 
 	public function applicant()
     {
@@ -23,15 +23,10 @@ class Applications extends Model
         return $this->belongsTo('App\Models\Jobs', 'job_id', 'id');
     }
 
-    public function requirements()
-    {
-        return $this->hasMany('App\Models\ApplicationRequirements', 'application_id', 'id');
-    }
-
-    public function getRequirementScoreAttribute()
-    {
-        return $this->requirements->sum('grade');
-    }
+    // public function getRequirementScoreAttribute()
+    // {
+    //     return $this->requirements->sum('grade');
+    // }
 
     public function getEducationScoreAttribute()
     {
@@ -48,19 +43,25 @@ class Applications extends Model
         return $this->applicant->skill_score;
     }
 
-    public function getExpectationScoreAttribute()
+    public function getAgeScoreAttribute()
     {
-        return $this->applicant->expectation_score;
+        return $this->applicant->age_score;
+    }
+
+    public function getMaritalScoreAttribute()
+    {
+        return $this->applicant->marital_score;
     }
 
     public function getCriteriaScoreAttribute()
     {
         return [
-            'requirement_score' => $this->requirements->sum('grade'),
+            // 'requirement_score' => $this->requirements->sum('grade'),
             'education_score' => $this->applicant->education_score,
             'career_score' => $this->applicant->career_score,
             'skill_score' => $this->applicant->skill_score,
-            'expectation_score' => $this->applicant->expectation_score,
+            'age_score' => $this->applicant->age_score,
+            'marital_score' => $this->applicant->marital_score,
         ];
     }
 }

@@ -19,7 +19,7 @@ class ApplicantsService extends \App\Services\BaseService
 {
     private $jobsService;
 
-    private $include = ['careers','educations','expectations','skills','applications', 'applications.job', 'applications.job.type', 'applications.job.position', 'applications.requirements'];
+    private $include = ['careers','educations','skills','applications', 'applications.job', 'applications.job.type', 'applications.job.position'];
 
     public function __construct(JobsService $jobsService) {
         $this->jobsService = $jobsService;
@@ -35,8 +35,6 @@ class ApplicantsService extends \App\Services\BaseService
     public function getById($id)
     {
         $result = Applicants::with($this->include)->where('id', $id)->firstOrFail()->toArray();
-
-        dd($result);
 
         return $result;
     }

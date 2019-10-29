@@ -11,9 +11,20 @@ class ApplicantEducations extends Model
     protected $table      = 'applicant_educations';
 	protected $guarded    = array('id');
 	protected $dates      = ['created_at', 'updated_at', 'deleted_at'];
+	protected $appends    = ['grade'];
 
 	public function applicant()
     {
-        return $this->belongsTo('App\Models\Applicants', 'id', 'applicant_id');
+        return $this->belongsTo('App\Models\Applicants', 'applicant_id', 'id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Models\EducationStatuses', 'education_status_id', 'id');
+    }
+
+    public function getGradeAttribute()
+    {
+        return $this->status->grade;
     }
 }

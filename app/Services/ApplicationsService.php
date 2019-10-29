@@ -18,10 +18,10 @@ class ApplicationsService extends \App\Services\BaseService
         $this->positionsService = $positionsService;
         $this->include = ['position','position.department','type','applications','applications.applicant'];
         $this->criterias = [
-            [
-                'name' => 'requirement_score',
-                'weight' => 3,
-            ],
+            // [
+            //     'name' => 'requirement_score',
+            //     'weight' => 3,
+            // ],
             [
                 'name' => 'education_score',
                 'weight' => 1.5,
@@ -35,8 +35,12 @@ class ApplicationsService extends \App\Services\BaseService
                 'weight' => 2.5,
             ],
             [
-                'name' => 'expectation_score',
-                'weight' => 1,
+                'name' => 'age_score',
+                'weight' => 0.5,
+            ],
+            [
+                'name' => 'marital_score',
+                'weight' => 0.5,
             ],
         ];
     }
@@ -54,12 +58,13 @@ class ApplicationsService extends \App\Services\BaseService
 
         $result = $this->normalizeCriteriasScore($result);
 
+        dd($result);
+
         return $result;
     }
 
     protected function normalizeCriteriasScore($result)
     {
-        // dd(sizeof($result['applications']));
         $criterias = $this->criterias;
         $applications = [];
 

@@ -58,8 +58,6 @@ class ApplicationsService extends \App\Services\BaseService
 
         $result = $this->normalizeCriteriasScore($result);
 
-        dd($result);
-
         return $result;
     }
 

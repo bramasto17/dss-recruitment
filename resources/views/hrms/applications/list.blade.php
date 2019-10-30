@@ -73,7 +73,7 @@
                                                             </button>
                                                             <ul class="dropdown-menu" role="menu">
                                                                 <li>
-                                                                    <a href="/applications/view/{{$result['id']}}">View</a>
+                                                                    <a href="/applications/{{$result['id']}}">View</a>
                                                                 </li>
                                                             </ul>
                                                         </div>

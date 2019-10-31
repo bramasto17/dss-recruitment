@@ -18,10 +18,10 @@ class ApplicationsService extends \App\Services\BaseService
         $this->positionsService = $positionsService;
         $this->include = ['position','position.department','type','applications','applications.applicant'];
         $this->criterias = [
-            // [
-            //     'name' => 'requirement_score',
-            //     'weight' => 3,
-            // ],
+            [
+                'name' => 'requirement_score',
+                'weight' => 3,
+            ],
             [
                 'name' => 'education_score',
                 'weight' => 1.5,
@@ -56,9 +56,31 @@ class ApplicationsService extends \App\Services\BaseService
     {
         $result = Jobs::with($this->include)->where('id', $id)->firstOrFail()->toArray();
 
+        $result = $this->calculateRequirementScore($result);
+
         $result = $this->normalizeCriteriasScore($result);
 
         return $result;
+    }
+
+    protected function calculateRequirementScore($job)
+    {
+        $job_requirements = JobRequirements::where('job_id',$job['id'])->select('skill_id')->get()->toArray();
+        $requirement_skills = [];
+        foreach ($job_requirements as $key => $value) {
+            $requirement_skills[] = $value['skill_id'];
+        }
+
+        foreach ($job['applications'] as &$application) {
+            $application['requirement_score'] = 0;
+            foreach ($application['applicant']['skills'] as $skill) {
+                if(in_array($skill['skill_id'], $requirement_skills)) $application['requirement_score'] += $skill['grade'];
+            }
+
+            $application['criteria_score']['requirement_score'] = $application['requirement_score'];
+        }
+
+        return $job;
     }
 
     protected function normalizeCriteriasScore($result)

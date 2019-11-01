@@ -21,26 +21,32 @@ class ApplicationsService extends \App\Services\BaseService
             [
                 'name' => 'requirement_score',
                 'weight' => 3,
+                'type' => 'benefit',
             ],
             [
                 'name' => 'education_score',
                 'weight' => 1.5,
+                'type' => 'benefit',
             ],
             [
                 'name' => 'career_score',
                 'weight' => 2,
+                'type' => 'benefit',
             ],
             [
                 'name' => 'skill_score',
                 'weight' => 2.5,
+                'type' => 'benefit',
             ],
             [
                 'name' => 'age_score',
                 'weight' => 0.5,
+                'type' => 'cost',
             ],
             [
                 'name' => 'marital_score',
                 'weight' => 0.5,
+                'type' => 'bool_cost',
             ],
         ];
     }
@@ -90,8 +96,22 @@ class ApplicationsService extends \App\Services\BaseService
 
         foreach ($criterias as $criteria) {
             foreach ($result['applications'] as &$value) {
-                $max_value = max(array_column($result['applications'], $criteria['name']));
-                $value['normalize_score'][$criteria['name']] = $value[$criteria['name']]/$max_value;
+                if($criteria['type'] == 'benefit'){
+                    $max_value = max(array_column($result['applications'], $criteria['name']));
+                    $value['normalize_score'][$criteria['name']] = $value[$criteria['name']]/$max_value;
+                }
+                else if($criteria['type'] == 'cost'){
+                    $min_value = min(array_column($result['applications'], $criteria['name']));
+                    $value['normalize_score'][$criteria['name']] = $min_value/$value[$criteria['name']];
+                }
+                else if($criteria['type'] == 'bool_cost'){
+                    if($value[$criteria['name']] == 0){
+                        $value['normalize_score'][$criteria['name']] = 1;
+                    }
+                    else if($value[$criteria['name']] == 1){
+                        $value['normalize_score'][$criteria['name']] = 0;
+                    }
+                }
             }
         }
 
@@ -101,6 +121,7 @@ class ApplicationsService extends \App\Services\BaseService
 
         foreach ($criterias as $criteria) {
             foreach ($result['applications'] as $key => &$value) {
+                // dd($value['normalize_score']);
                 $value['alternative_score'] += ($value['normalize_score'][$criteria['name']] * $criteria['weight']);
             }
         }

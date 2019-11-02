@@ -26,11 +26,12 @@ class ApplicantsController extends Controller
     {
         $religions = $this->applicantsService->getReligions();
         $career_statuses = $this->applicantsService->getCareerStatuses();
+        $career_durations = $this->applicantsService->getCareerDurations();
         $education_statuses = $this->applicantsService->getEducationStatuses();
         $jobs = $this->applicantsService->getJobs();
         $skills = $this->applicantsService->getSkills();
 
-        return view('hrms.applicants.add', compact('religions','career_statuses','education_statuses','jobs','skills'));
+        return view('hrms.applicants.add', compact('religions','career_statuses','career_durations','education_statuses','jobs','skills'));
     }
 
     public function create(Request $request)

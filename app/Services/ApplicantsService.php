@@ -9,6 +9,7 @@ use App\Models\ApplicantExpectations;
 use App\Models\ApplicantSkills;
 use App\Models\Applications;
 use App\Models\ApplicationRequirements;
+use App\Models\CareerDurations;
 use App\Models\CareerStatuses;
 use App\Models\EducationStatuses;
 use App\Models\Expectations;
@@ -391,6 +392,13 @@ class ApplicantsService extends \App\Services\BaseService
         return $results;
     }
 
+    public function getCareerDurations()
+    {
+        $results = $this->queryBuilder(CareerDurations::class, [], [])->get()->toArray();
+
+        return $results;
+    }
+
     public function getGrades()
     {
         $results = [
@@ -435,6 +443,7 @@ class ApplicantsService extends \App\Services\BaseService
                 'position' => $data['career_position'][$key],
                 'company_name' => $data['career_company'][$key],
                 'career_status_id' => $data['career_status'][$key],
+                'career_duration_id' => $data['career_duration'][$key],
             ];
 
             $results[] = ApplicantCareers::create($career)->toArray();

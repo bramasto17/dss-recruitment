@@ -23,8 +23,13 @@ class ApplicantCareers extends Model
         return $this->belongsTo('App\Models\CareerStatuses', 'career_status_id', 'id');
     }
 
+    public function duration()
+    {
+        return $this->belongsTo('App\Models\CareerDurations', 'career_duration_id', 'id');
+    }
+
     public function getGradeAttribute()
     {
-        return $this->status->grade;
+        return $this->status->grade * $this->duration->grade;
     }
 }

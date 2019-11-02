@@ -160,18 +160,27 @@
                                             <div id="careers">
                                                 <div class="form-group">
                                                     <label class="col-md-3 control-label"> Careers </label>
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-2" style="padding-right: 2px;">
                                                         <input type="text" name="career_position[]" id="career_position" class="select2-single form-control" placeholder="Position" required>
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-2" style="padding-left: 2px; padding-right: 2px;">
                                                         <input type="text" name="career_company[]" id="career_company" class="select2-single form-control" placeholder="Company Name" required>
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-1" style="padding-left: 2px; padding-right: 2px;">
                                                         <select class="select2-multiple form-control select-primary"
                                                                 name="career_status[]" required>
                                                             <option value="" selected>Status</option>
                                                             @foreach($career_statuses as $career_status)
                                                                 <option value="{{$career_status['id']}}">{{$career_status['name']}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-1" style="padding-left: 2px; padding-right: 2px;">
+                                                        <select class="select2-multiple form-control select-primary"
+                                                                name="career_duration[]" required>
+                                                            <option value="" selected>Durations</option>
+                                                            @foreach($career_durations as $career_duration)
+                                                                <option value="{{$career_duration['id']}}">{{$career_duration['name']}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -259,7 +268,7 @@
         var add_career = $(".add_career");
         $(add_career).click(function(e){ //on add input button click
             e.preventDefault();
-            $(career_wrapper).append('<div class="form-group"> <label class="col-md-3 control-label"> </label> <div class="col-md-2"> <input type="text" name="career_position[]" id="career_position" class="select2-single form-control" placeholder="Position" required> </div><div class="col-md-2"> <input type="text" name="career_company[]" id="career_company" class="select2-single form-control" placeholder="Company Name" required> </div><div class="col-md-2"> <select class="select2-multiple form-control select-primary" name="career_status[]" required> <option value="" selected>Status</option> @foreach($career_statuses as $status) <option value="{{$status['id']}}">{{$status['name']}}</option> @endforeach </select> </div></div>');
+            $(career_wrapper).append('<div class="form-group"> <label class="col-md-3 control-label"></label> <div class="col-md-2" style="padding-right: 2px;"> <input type="text" name="career_position[]" id="career_position" class="select2-single form-control" placeholder="Position" required> </div><div class="col-md-2" style="padding-left: 2px; padding-right: 2px;"> <input type="text" name="career_company[]" id="career_company" class="select2-single form-control" placeholder="Company Name" required> </div><div class="col-md-1" style="padding-left: 2px; padding-right: 2px;"> <select class="select2-multiple form-control select-primary" name="career_status[]" required> <option value="" selected>Status</option> @foreach($career_statuses as $career_status) <option value="{{$career_status['id']}}">{{$career_status['name']}}</option> @endforeach </select> </div><div class="col-md-1" style="padding-left: 2px; padding-right: 2px;"> <select class="select2-multiple form-control select-primary" name="career_duration[]" required> <option value="" selected>Durations</option> @foreach($career_durations as $career_duration) <option value="{{$career_duration['id']}}">{{$career_duration['name']}}</option> @endforeach </select> </div></div>');
         });
         $(career_wrapper).on("click",".remove_career", function(e){
             console.log('sdsf');

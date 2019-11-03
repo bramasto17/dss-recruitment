@@ -371,7 +371,8 @@ Route::group(['middleware' => ['auth']], function ()
     Route::group(['prefix' => 'applicants'], function($router) {
         Route::get('/', 'ApplicantsController@getAll')->name('list-applicants');
         // Route::get('/', 'ApplicantsController@create')->name('list-applicants');
-        Route::get('edit/{id}', 'ApplicantsController@edit')->name('edit-applicants');
+        Route::get('/{id}', 'ApplicantsController@view')->name('view-applicants');
+        // Route::get('edit/{id}', 'ApplicantsController@edit')->name('edit-applicants');
         // Route::get('edit/{id}', 'ApplicantsController@update')->name('edit-applicants');
         Route::post('edit/{id}', 'ApplicantsController@update');
         Route::get('delete/{id}', 'ApplicantsController@delete')->name('delete-applicants');        

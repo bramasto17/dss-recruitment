@@ -45,10 +45,16 @@ class ApplicantsController extends Controller
 
     public function edit($id)
     {
-        // $departments = $this->applicantsService->getDepartments();
         $result = $this->applicantsService->getById($id);
 
         return view('hrms.applicants.edit', compact('result'));
+    }
+
+    public function view($id)
+    {
+        $result = $this->applicantsService->getById($id);
+
+        return view('hrms.applicants.view', compact('result'));
     }
 
     public function update(Request $request, $id){

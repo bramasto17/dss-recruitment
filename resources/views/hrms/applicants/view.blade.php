@@ -13,8 +13,12 @@
                         </a>
                     </li>
                     <li class="breadcrumb-active">
-                        <a href="">View Applicant </a>
+                        <a href="/dashboard"> Dashboard </a>
                     </li>
+                    <li class="breadcrumb-link">
+                        <a href="applications"> Applications </a>
+                    </li>
+                    <li class="breadcrumb-current-item"> View Applicants</li>
                 </ol>
             </div>
         </header>

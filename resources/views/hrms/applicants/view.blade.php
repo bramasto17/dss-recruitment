@@ -1,4 +1,4 @@
-@extends('hrms.layouts.public-base')
+@extends('hrms.layouts.base')
 
 @section('content')
     <!-- START CONTENT -->

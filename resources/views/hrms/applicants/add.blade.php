@@ -153,7 +153,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label"> NPWP Number </label>
                                                 <div class="col-md-6">
-                                                    <input type="text" name="npwp_no" id="npwp_no" class="select2-single form-control" placeholder="NPWP Number" required>
+                                                    <input type="text" name="npwp_no" id="npwp_no" class="select2-single form-control" placeholder="NPWP Number">
                                                 </div>
                                             </div>
 

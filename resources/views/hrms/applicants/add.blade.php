@@ -178,7 +178,7 @@
                                                     <div class="col-md-1" style="padding-left: 2px; padding-right: 2px;">
                                                         <select class="select2-multiple form-control select-primary"
                                                                 name="career_duration[]" required>
-                                                            <option value="" selected>Durations</option>
+                                                            <option value="" selected>Durasi</option>
                                                             @foreach($career_durations as $career_duration)
                                                                 <option value="{{$career_duration['id']}}">{{$career_duration['name']}}</option>
                                                             @endforeach

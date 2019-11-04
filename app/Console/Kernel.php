@@ -14,7 +14,6 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // Commands\Inspire::class,
-        \App\Console\Commands\Wish::class
     ];
 
     /**
@@ -36,7 +35,6 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
-        require base_path('routes/console.php');
+        
     }
 }

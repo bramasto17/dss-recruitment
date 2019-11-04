@@ -126,6 +126,10 @@ class ApplicationsService extends \App\Services\BaseService
             }
         }
 
+        foreach ($result['applications'] as &$value) {
+            $value['alternative_score'] = number_format((float)$value['alternative_score'], 2, '.', '');
+        }
+
         array_multisort(array_column($result['applications'], 'alternative_score'), SORT_DESC, $result['applications']);
 
         return $result;

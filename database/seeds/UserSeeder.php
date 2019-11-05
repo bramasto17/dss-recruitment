@@ -14,8 +14,8 @@ class UserSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
         \DB::table('users')->truncate();
         \DB::table('users')->insert([
-            'name' => 'HR Manager',
-            'email' => 'test@demo.com',
+            'name' => 'HR Manager Baran',
+            'email' => 'hr@baran.com',
             'password' => bcrypt('123456'),
         ]);
         Schema::enableForeignKeyConstraints();

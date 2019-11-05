@@ -48,7 +48,7 @@ class PositionsSeeder extends Seeder
             ],
             [
                 'department_id' => 5,
-                'name' => 'Design',
+                'name' => 'Engineer Design',
             ],
             [
                 'department_id' => 5,

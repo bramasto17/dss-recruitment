@@ -36,7 +36,7 @@ class PositionsSeeder extends Seeder
             ],
             [
                 'department_id' => 3,
-                'name' => 'Human Resource Leader',
+                'name' => 'General Affairs',
             ],
             [
                 'department_id' => 3,
@@ -44,24 +44,16 @@ class PositionsSeeder extends Seeder
             ],
             [
                 'department_id' => 4,
-                'name' => 'Project Manager',
-            ],
-            [
-                'department_id' => 5,
-                'name' => 'Purchase Officer',
-            ],
-            [
-                'department_id' => 5,
-                'name' => 'Customer Service',
-            ],
-            [
-                'department_id' => 6,
                 'name' => 'Sales',
             ],
             [
-                'department_id' => 9,
-                'name' => 'Head of Research and Development',
+                'department_id' => 5,
+                'name' => 'Mechanic',
             ],
+            [
+                'department_id' => 5,
+                'name' => 'Welder',
+            ]
         ]);
         Schema::enableForeignKeyConstraints();
     }

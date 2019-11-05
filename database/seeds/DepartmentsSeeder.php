@@ -24,16 +24,10 @@ class DepartmentsSeeder extends Seeder
                 'name' => 'Human Resource',
             ],
             [
-                'name' => 'Business',
-            ],
-            [
-                'name' => 'Commercial',
-            ],
-            [
                 'name' => 'Marketing',
             ],
             [
-                'name' => 'Engineers',
+                'name' => 'Engineering',
             ]
         ]);
         Schema::enableForeignKeyConstraints();

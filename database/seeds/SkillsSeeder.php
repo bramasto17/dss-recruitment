@@ -103,6 +103,34 @@ class SkillsSeeder extends Seeder
                 'name' => 'Attention to Detail',
             ],
             [
+                'skill_type_id' => 2,
+                'name' => 'Quick Learning',
+            ],
+            [
+                'skill_type_id' => 2,
+                'name' => 'Relationship Building',
+            ],
+            [
+                'skill_type_id' => 2,
+                'name' => 'Multitasking',
+            ],
+            [
+                'skill_type_id' => 2,
+                'name' => 'Social Selling',
+            ],
+            [
+                'skill_type_id' => 2,
+                'name' => 'Prospecting',
+            ],
+            [
+                'skill_type_id' => 2,
+                'name' => 'Social Selling',
+            ],
+            [
+                'skill_type_id' => 2,
+                'name' => 'Objection Handling',
+            ],
+            [
                 'skill_type_id' => 3,
                 'name' => 'HTML',
             ],
@@ -173,6 +201,26 @@ class SkillsSeeder extends Seeder
             [
                 'skill_type_id' => 3,
                 'name' => 'Adobe Illustrator',
+            ],
+            [
+                'skill_type_id' => 3,
+                'name' => 'AutoCAD',
+            ],
+            [
+                'skill_type_id' => 3,
+                'name' => 'Sketchbook',
+            ],
+            [
+                'skill_type_id' => 3,
+                'name' => 'Dynamics',
+            ],
+            [
+                'skill_type_id' => 3,
+                'name' => 'Applied Fluid',
+            ],
+            [
+                'skill_type_id' => 3,
+                'name' => 'Welding',
             ],
         ]);
         Schema::enableForeignKeyConstraints();

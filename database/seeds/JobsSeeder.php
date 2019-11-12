@@ -19,11 +19,11 @@ class JobsSeeder extends Seeder
                 'job_type_id' => 2,
             ],
             [
-                'position_id' => 5,
+                'position_id' => 6,
                 'job_type_id' => 2,
             ],
             [
-                'position_id' => 10,
+                'position_id' => 7,
                 'job_type_id' => 2,
             ],
             [
@@ -33,6 +33,10 @@ class JobsSeeder extends Seeder
             [
                 'position_id' => 9,
                 'job_type_id' => 4,
+            ],
+            [
+                'position_id' => 10,
+                'job_type_id' => 1,
             ],
         ]);
         Schema::enableForeignKeyConstraints();

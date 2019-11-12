@@ -39,7 +39,15 @@
                                     <span class="panel-title hidden-xs"> Applicants Lists for {{$result['position']['name']}} {{$result['type']['name']}}</span>
                                 </div>
                                 <div class="panel-body pn">
-                                    {!! Form::open(['class' => 'form-horizontal']) !!}
+                                    <div class="panel-menu allcp-form theme-primary mtn">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <a class="btn @if(!app('request')->input('gender')) btn-primary @else btn-secondary @endif dropdown-toggle" href="?" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">All</a>
+                                                <a class="btn @if(app('request')->input('gender') == 'male') btn-primary @else btn-secondary @endif dropdown-toggle" href="?gender=male" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">Male</a>
+                                                <a class="btn @if(app('request')->input('gender') == 'female') btn-primary @else btn-secondary @endif dropdown-toggle" href="?gender=female" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">Female</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="table-responsive">
                                         <table class="table allcp-form theme-warning tc-checkbox-1 fs13">
                                             <thead>
@@ -90,7 +98,6 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    {!! Form::close() !!}
                                 </div>
                             </div>
                         </div>

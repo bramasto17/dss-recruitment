@@ -60,7 +60,23 @@ class ApplicationsService extends \App\Services\BaseService
 
     public function getById($id, $attributes)
     {
-        $result = Jobs::with($this->include)->where('id', $id)->firstOrFail()->toArray();
+        $result = Jobs::with($this->include)->where('id', $id);
+
+        if(@$attributes['gender']){
+            // $result = $result->with('applications', function($query) use ($attributes) {
+            //     $query->whereHas('applicant', function($q) use ($attributes) {
+            //         $q->where('gender',$attributes['gender']);
+            //     });
+            // });
+
+            $result = $result->with(['applications' => function($query) use ($attributes) {
+                $query->whereHas('applicant', function($q) use ($attributes) {
+                    $q->where('gender',$attributes['gender']);
+                });
+            }]);
+        }
+
+        $result = $result->firstOrFail()->toArray();
 
         $result = $this->calculateRequirementScore($result);
 

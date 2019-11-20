@@ -52,7 +52,7 @@
                                         <table class="table allcp-form theme-warning tc-checkbox-1 fs13">
                                             <thead>
                                             <tr class="bg-light">
-                                                <th class="text-center">Id</th>
+                                                <th class="text-center">No</th>
                                                 <th class="text-center">Name</th>
                                                 <th class="text-center">Phone</th>
                                                 <th class="text-center">Email</th>
@@ -67,9 +67,9 @@
                                             </thead>
 
                                             <tbody>
-                                            @foreach($result['applications'] as $application)
+                                            @foreach($result['applications'] as $key => $application)
                                                 <tr>
-                                                    <td class="text-center">{{$application['applicant']['id']}}</td>
+                                                    <td class="text-center">{{$key + 1}}</td>
                                                     <td class="text-center">{{$application['applicant']['name']}}</td>
                                                     <td class="text-center">{{$application['applicant']['phone']}}</td>
                                                     <td class="text-center">{{$application['applicant']['email']}}</td>

@@ -76,6 +76,12 @@ class ApplicationsService extends \App\Services\BaseService
             }]);
         }
 
+        if(@$attributes['top']){
+            $result = $result->with(['applications' => function($query) use ($attributes) {
+                $query->take($attributes['top']);
+            }]);
+        }
+
         $result = $result->firstOrFail()->toArray();
 
         $result = $this->calculateRequirementScore($result);

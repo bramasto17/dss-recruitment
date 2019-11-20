@@ -46,6 +46,12 @@
                                                 <a class="btn @if(app('request')->input('gender') == 'male') btn-primary @else btn-secondary @endif dropdown-toggle" href="?gender=male" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">Male</a>
                                                 <a class="btn @if(app('request')->input('gender') == 'female') btn-primary @else btn-secondary @endif dropdown-toggle" href="?gender=female" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">Female</a>
                                             </div>
+                                            <div class="col-md-4 col-md-offset-5">
+                                                <a class="btn @if(!app('request')->input('top')) btn-primary @else btn-secondary @endif dropdown-toggle" href="?" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">All</a>
+                                                <a class="btn @if(app('request')->input('top') == '5') btn-primary @else btn-secondary @endif dropdown-toggle" href="?top=5" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">Top 5</a>
+                                                <a class="btn @if(app('request')->input('top') == '10') btn-primary @else btn-secondary @endif dropdown-toggle" href="?top=10" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">Top 10</a>
+                                                <a class="btn @if(app('request')->input('top') == '25') btn-primary @else btn-secondary @endif dropdown-toggle" href="?top=25" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">Top 25</a>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="table-responsive">

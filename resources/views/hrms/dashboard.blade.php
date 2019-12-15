@@ -40,7 +40,7 @@
                             <div class="col-xs-6 col-xs-offset-3 ph10">
                                 <img src="/assets/img/pages/clipart0.png" class="img-responsive mauto" alt=""/></div>
                             <div class="col-xs-12" style="text-align: center;">
-                                <h3 class="text-muted"><a href="{{route('list-departments')}}"> DEPARTMENT <br> MANAGER</a></h3>
+                                <h3 class="text-muted"><a href="{{route('list-departments')}}"> DEPARTMENT</a></h3>
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                             <div class="col-xs-6 col-xs-offset-3 ph10">
                                 <img src="/assets/img/pages/clipart6.png" class="img-responsive mauto" alt=""/></div>
                             <div class="col-xs-12" style="text-align: center;">
-                                <h3 class="text-muted"><a href="{{route('list-positions')}}"> POSITION <br> MANAGER</a></h3>
+                                <h3 class="text-muted"><a href="{{route('list-positions')}}"> POSITION</a></h3>
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                             <div class="col-xs-6 col-xs-offset-3 ph10">
                                 <img src="/assets/img/pages/clipart3.png" class="img-responsive mauto" alt=""/></div>
                             <div class="col-xs-12" style="text-align: center;">
-                                <h3 class="text-muted"><a href="{{route('list-jobs')}}"> JOB <br> MANAGER</a></h3>
+                                <h3 class="text-muted"><a href="{{route('list-jobs')}}"> JOB</a></h3>
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                             <div class="col-xs-6 col-xs-offset-3 ph10">
                                 <img src="/assets/img/pages/clipart2.png" class="img-responsive mauto" alt=""/></div>
                             <div class="col-xs-12" style="text-align: center;">
-                                <h3 class="text-muted"><a href="{{route('list-applications')}}"> APPLICATION <br> MANAGER</a></h3>
+                                <h3 class="text-muted"><a href="{{route('list-applications')}}"> APPLICATION</a></h3>
                             </div>
                         </div>
                     </div>

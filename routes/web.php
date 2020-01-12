@@ -26,6 +26,22 @@ Route::group(['middleware' => ['guest']], function ()
 
 Route::group(['middleware' => ['auth']], function ()
 {
+    Route::get('home', 'HomeController@index');
+
+    Route::get('change-password', 'AuthController@changePassword');
+
+    Route::post('change-password', 'AuthController@processPasswordChange');
+
+    Route::get('logout', 'AuthController@doLogout');
+
+    Route::get('welcome', 'AuthController@welcome');
+
+    Route::get('not-found', 'AuthController@notFound');
+
+    Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'AuthController@dashboard']);
+
+    Route::get('profile', 'ProfileController@show');
+    
     //Routes for departments
     Route::group(['prefix' => 'departments'], function($router) {
         Route::get('/', 'DepartmentsController@getAll')->name('list-departments');

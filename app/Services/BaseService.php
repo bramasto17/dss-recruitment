@@ -33,22 +33,10 @@ class BaseService
             $baseQuery = ($baseQuery)::query();
         }
 
-        $partner = (@$attributes['partner']) ? $attributes['partner'] : null;
-        $package = (@$attributes['package']) ? $attributes['package'] : null;
-        $popular = (@$attributes['popular']) ? $attributes['popular'] : null;
         $sort = (@$attributes['sort']) ? $attributes['sort'] : null;
         $sortRule = (@$attributes['sort_rule']) ? $attributes['sort_rule'] : null;
 
         $baseQuery = $baseQuery->with($includes);
-
-        if (!is_null($partner))
-            $baseQuery = $baseQuery->where('partner_id', $partner);
-
-        if (!is_null($package))
-            $baseQuery = $baseQuery->where('package_id', $package);
-
-        if (!is_null($popular))
-            $baseQuery = $baseQuery->where('is_popular', $popular);
 
         if (!is_null($sort))
             $baseQuery = $baseQuery->orderBy($sort, $sortRule);

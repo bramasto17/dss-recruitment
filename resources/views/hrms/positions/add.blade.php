@@ -45,7 +45,7 @@
                                             {!! Form::open(['class' => 'form-horizontal']) !!}
 
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label"> Positions </label>
+                                                <label class="col-md-3 control-label"> Departments </label>
                                                 <div class="col-md-6">
                                                     <select class="select2-multiple form-control select-primary"
                                                             name="department_id" required>

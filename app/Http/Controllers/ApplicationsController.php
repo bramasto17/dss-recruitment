@@ -31,4 +31,21 @@ class ApplicationsController extends Controller
 
         return view('hrms.applications.detail', compact('result'));
     }
+
+    public function getScoring(Request $request)
+    {
+        $attributes = $request->all();
+        $results = $this->applicationsService->getScoring($attributes);
+        // dd($results);
+
+        return view('hrms.applications.scoring', compact('results'));
+    }
+
+    public function updateScoring(Request $request)
+    {
+        $attributes = array_except($request->all(), ['_token']);
+        $result = $this->applicationsService->updateScoring($attributes);
+
+        return redirect('scoring');
+    }
 }

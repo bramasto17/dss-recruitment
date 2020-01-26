@@ -99,6 +99,10 @@
                     <a href="{{route('list-applications')}}">
                         <span class="glyphicon glyphicon-tags"></span> Applications Listing </a>
                 </li>
+                <li>
+                    <a href="{{route('scoring')}}">
+                        <span class="glyphicon glyphicon-tags"></span> Scoring Adjustment </a>
+                </li>
             </ul>
         </li>
     @endif

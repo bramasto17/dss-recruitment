@@ -85,5 +85,11 @@ Route::group(['middleware' => ['auth']], function ()
         Route::get('/{id}', 'ApplicationsController@getById')->name('detail-applictions');
     });
 
+    Route::group(['prefix' => 'scoring'], function($router) {
+        Route::get('/', 'ApplicationsController@getScoring')->name('scoring');
+        Route::post('/', 'ApplicationsController@updateScoring')->name('edit-scoring');
+    });
+
+
 
 });

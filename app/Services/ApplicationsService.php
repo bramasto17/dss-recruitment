@@ -6,6 +6,7 @@ use App\Models\Jobs;
 use App\Models\JobTypes;
 use App\Models\JobRequirements;
 use App\Models\JobRequirementTypes;
+use App\Models\Scoring;
 use App\Services\PositionsService;
 
 class ApplicationsService extends \App\Services\BaseService
@@ -17,38 +18,8 @@ class ApplicationsService extends \App\Services\BaseService
     public function __construct(PositionsService $positionsService) {
         $this->positionsService = $positionsService;
         $this->include = ['position','position.department','type','applications','applications.applicant'];
-        $this->criterias = [
-            [
-                'name' => 'requirement_score',
-                'weight' => 3,
-                'type' => 'benefit',
-            ],
-            [
-                'name' => 'education_score',
-                'weight' => 1.5,
-                'type' => 'benefit',
-            ],
-            [
-                'name' => 'career_score',
-                'weight' => 2,
-                'type' => 'benefit',
-            ],
-            [
-                'name' => 'skill_score',
-                'weight' => 2.5,
-                'type' => 'benefit',
-            ],
-            [
-                'name' => 'age_score',
-                'weight' => 0.5,
-                'type' => 'cost',
-            ],
-            [
-                'name' => 'marital_score',
-                'weight' => 0.5,
-                'type' => 'bool_cost',
-            ],
-        ];
+        $this->criterias = Scoring::first()->toArray();
+        $this->criterias = json_decode($this->criterias['scoring'], true);
     }
 
     public function getAll($attributes = [])
@@ -155,5 +126,27 @@ class ApplicationsService extends \App\Services\BaseService
         array_multisort(array_column($result['applications'], 'alternative_score'), SORT_DESC, $result['applications']);
 
         return $result;
+    }
+
+    public function getScoring($attributes)
+    {
+        return $this->criterias;
+    }
+
+    public function updateScoring($attributes)
+    {
+        foreach ($attributes as $key => $value) {
+            $scorings[] = [
+                'name' => $key,
+                'weight' => $value['weight'],
+                'type' => $value['type']
+            ];
+        }
+
+        $scorings = json_encode($scorings);
+
+        Scoring::first()->update(['scoring' => $scorings]);
+
+        return $scorings;
     }
 }

@@ -63,7 +63,6 @@
                                                 <th class="text-center">Phone</th>
                                                 <th class="text-center">Email</th>
                                                 <th class="text-center">Age</th>
-                                                <th class="text-center">Marital Status</th>
                                                 <th class="text-center">Career Score</th>
                                                 <th class="text-center">Education Score</th>
                                                 <th class="text-center">Skill Score</th>
@@ -80,7 +79,6 @@
                                                     <td class="text-center">{{$application['applicant']['phone']}}</td>
                                                     <td class="text-center">{{$application['applicant']['email']}}</td>
                                                     <td class="text-center">{{$application['applicant']['age_score']}}</td>
-                                                    <td class="text-center">{{$application['applicant']['marital_status']}}</td>
                                                     <td class="text-center">{{$application['applicant']['career_score']}}</td>
                                                     <td class="text-center">{{$application['applicant']['education_score']}}</td>
                                                     <td class="text-center">{{$application['applicant']['skill_score']}}</td>

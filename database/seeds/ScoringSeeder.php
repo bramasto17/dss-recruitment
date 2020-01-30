@@ -12,11 +12,11 @@ class ScoringSeeder extends Seeder
     public function run()
     {
         $scoring = [
-            [
-                'name' => 'requirement_score',
-                'weight' => 3,
-                'type' => 'benefit',
-            ],
+            // [
+            //     'name' => 'requirement_score',
+            //     'weight' => 3,
+            //     'type' => 'benefit',
+            // ],
             [
                 'name' => 'education_score',
                 'weight' => 1.5,
@@ -37,11 +37,11 @@ class ScoringSeeder extends Seeder
                 'weight' => 0.5,
                 'type' => 'cost',
             ],
-            [
-                'name' => 'marital_score',
-                'weight' => 0.5,
-                'type' => 'bool_cost',
-            ]
+            // [
+            //     'name' => 'marital_score',
+            //     'weight' => 0.5,
+            //     'type' => 'bool_cost',
+            // ]
         ];
 
         $scoring = json_encode($scoring);
